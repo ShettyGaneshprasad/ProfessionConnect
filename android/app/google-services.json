@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "775214600067-k62i72mrh371jjtl5925hji1oip0l5tn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ProfessionConnect",
+            "certificate_hash": "f77f8840b1fcb66650465ecb59696fd96ee77d60"
+          }
+        },
+        {
           "client_id": "775214600067-j14sfbmphkdhht6gn322e13amd606cs3.apps.googleusercontent.com",
           "client_type": 3
         }
