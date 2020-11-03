@@ -7,15 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ProfessionConnect/services/database.dart';
 
-/// ---------------------------
-/// Uses Reside Menu Drawer widget goes here.
-/// ---------------------------
-
-/// ---------------------------
-/// This class uses Reside Menu library
-/// The link to it : https://github.com/peng8350/flutter_residemenu
-/// ---------------------------
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -70,12 +61,15 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
         gradient: LinearGradient(
           colors: <Color>[
-            Color(0xFF483390),
-            Color(0xFF096650),
+            // Colors.yellow,
+            // Color(0xFFFF3E4D),
+             Color(0xFFFE5572),
+          Color(0xFFFCAA44),
+           
           ],
-          stops: [0.0, 0.9],
-          begin: const FractionalOffset(0.0, 0.0),
-          end: const FractionalOffset(0.0, 1.0),
+          
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
         ),
         color: Colors.white.withOpacity(0.5),
       ),
@@ -87,82 +81,95 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       /// ---------------------------
 
       child: new Scaffold(
-        appBar: new AppBar(
-          elevation: 10.0,
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          leading: new GestureDetector(
-            child: Container(
-              color: Colors.white,
-              child: const Icon(
-                Icons.menu,
-                color: Colors.black,
-              ),
-            ),
-            onTap: () {
-              _menuController.openMenu(true);
-            },
-          ),
-          title: new Text(
-            'Profession Connect',
-            style: TextStyle(color: Colors.black),
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              onPressed: () => {},
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.notifications_none,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                //temporary for testing db update user
-                // db.updateUserData(
-                //     age: 12,
-                //     email: userdata.email,
-                //     name: 'Shetty Ganeshprasad');
-              },
-            ),
+        appBar: buildAppBar(),
+        body: _page==0?buildPage(0): _page==1?buildPage(1):_page==2?buildPage(2):_page==3?buildPage(3):_page==3?buildPage(3):buildPage(4),
+        bottomNavigationBar: buildCurvedNavigationBar(),
+      ),
+    );
+  }
+
+ Container buildPage(int number){
+
+return  Container(
+      color: Color(0xFFFFA841),
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            Text(number.toString(), textScaleFactor: 10.0),
           ],
-        ),
-        body: Container(
-          color: Colors.blueAccent,
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Text(_page.toString(), textScaleFactor: 10.0),
-              ],
-            ),
-          ),
-        ),
-        bottomNavigationBar: CurvedNavigationBar(
-          key: _bottomNavigationKey,
-          index: 0,
-          height: 50.0,
-          items: <Widget>[
-            Icon(Icons.home, size: 30),
-            Icon(Icons.favorite_border, size: 30),
-            Icon(Icons.supervised_user_circle, size: 30),
-            Icon(Icons.notifications_active, size: 30),
-            Icon(Icons.more_vert, size: 30),
-          ],
-          color: Colors.white,
-          buttonBackgroundColor: Colors.white,
-          backgroundColor: Colors.blueAccent,
-          animationCurve: Curves.easeInOut,
-          animationDuration: Duration(milliseconds: 600),
-          onTap: (index) {
-            setState(() {
-              _page = index;
-            });
-          },
         ),
       ),
+    );
+ }
+
+  CurvedNavigationBar buildCurvedNavigationBar() {
+    return CurvedNavigationBar(
+      key: _bottomNavigationKey,
+      index: 0,
+      height: 50.0,
+      items: <Widget>[
+        Icon(Icons.home, size: 30),
+        Icon(Icons.favorite_border, size: 30),
+        Icon(Icons.supervised_user_circle, size: 30),
+        Icon(Icons.notifications_active, size: 30),
+        Icon(Icons.more_vert, size: 30),
+      ],
+      color:Colors.deepOrange,
+      buttonBackgroundColor: Colors.white,
+      backgroundColor: Color(0xffFFA841),
+      animationCurve: Curves.easeInOut,
+      animationDuration: Duration(milliseconds: 600),
+      onTap: (index) {
+        setState(() {
+          _page = index;
+        });
+      },
+    );
+  }
+
+  AppBar buildAppBar() {
+    return new AppBar(
+      elevation: 10.0,
+      centerTitle: true,
+      backgroundColor: Colors.deepOrange,
+      leading: new GestureDetector(
+        child: Container(
+          color: Colors.deepOrange,
+          child: const Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
+        ),
+        onTap: () {
+          _menuController.openMenu(true);
+        },
+      ),
+      title: new Text(
+        'Profession Connect',
+        style: TextStyle(color: Colors.black),
+      ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(
+            Icons.search,
+            color: Colors.black,
+          ),
+          onPressed: () => {},
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.notifications_none,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            //temporary for testing db update user
+            // db.updateUserData(
+            //     age: 12,
+            //     email: userdata.email,
+            //     name: 'Shetty Ganeshprasad');
+          },
+        ),
+      ],
     );
   }
 
