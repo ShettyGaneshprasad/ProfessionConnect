@@ -1,6 +1,7 @@
 import 'package:ProfessionConnect/models/user.dart';
 
 import 'package:ProfessionConnect/services/database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -51,8 +52,12 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = result.user;
       // create a new document for the user with the uid
+      // await DatabaseService(uid: user.uid)
+      //     .updateUserData('0', 'new crew member', 100);
+
       await DatabaseService(uid: user.uid)
-          .updateUserData('0', 'new crew member', 100);
+          .updateUserData(age: 0, email: user.email, name: 'Null');
+
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());
