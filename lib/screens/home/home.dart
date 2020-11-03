@@ -1,9 +1,11 @@
 import 'package:ProfessionConnect/models/user.dart';
 import 'package:ProfessionConnect/services/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ProfessionConnect/services/database.dart';
 
 /// ---------------------------
 /// Uses Reside Menu Drawer widget goes here.
@@ -54,6 +56,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     double height = setHeightPercentage(100, context);
     final userdata = Provider.of<User>(context);
+    DatabaseService db = DatabaseService(uid: userdata.uid);
 
     /// ---------------------------
     /// Building Scaffold Reside Menu drawer .
@@ -117,7 +120,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 Icons.notifications_none,
                 color: Colors.black,
               ),
-              onPressed: () => {},
+              onPressed: () {
+                //temporary for testing db update user
+                // db.updateUserData(
+                //     age: 12,
+                //     email: userdata.email,
+                //     name: 'Shetty Ganeshprasad');
+              },
             ),
           ],
         ),
