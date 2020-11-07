@@ -1,4 +1,5 @@
 import 'package:ProfessionConnect/models/user.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/profilePage.dart';
 import 'package:ProfessionConnect/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -63,11 +64,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           colors: <Color>[
             // Colors.yellow,
             // Color(0xFFFF3E4D),
-             Color(0xFFFE5572),
-          Color(0xFFFCAA44),
-           
+            Color(0xFFFE5572),
+            Color(0xFFFCAA44),
           ],
-          
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
@@ -82,15 +81,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
       child: new Scaffold(
         appBar: buildAppBar(),
-        body: _page==0?buildPage(0): _page==1?buildPage(1):_page==2?buildPage(2):_page==3?buildPage(3):_page==3?buildPage(3):buildPage(4),
+        body: _page == 0
+            ? buildPage(0)
+            : _page == 1
+                ? buildPage(1)
+                : _page == 2
+                    ? buildPage(2)
+                    : _page == 3
+                        ? buildPage(3)
+                        : _page == 3
+                            ? buildPage(3)
+                            : buildPage(4),
         bottomNavigationBar: buildCurvedNavigationBar(),
       ),
     );
   }
 
- Container buildPage(int number){
-
-return  Container(
+  Container buildPage(int number) {
+    return Container(
       color: Color(0xFFFFA841),
       child: Center(
         child: Column(
@@ -100,7 +108,7 @@ return  Container(
         ),
       ),
     );
- }
+  }
 
   CurvedNavigationBar buildCurvedNavigationBar() {
     return CurvedNavigationBar(
@@ -114,7 +122,7 @@ return  Container(
         Icon(Icons.notifications_active, size: 30),
         Icon(Icons.more_vert, size: 30),
       ],
-      color:Colors.deepOrange,
+      color: Colors.deepOrange,
       buttonBackgroundColor: Colors.white,
       backgroundColor: Color(0xffFFA841),
       animationCurve: Curves.easeInOut,
@@ -298,6 +306,10 @@ return  Container(
         this.widgetId = widgetId;
       });
     _menuController.closeMenu();
+    if (widgetId == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+    }
   }
 
   Material getMaterialResideMenuItem(
