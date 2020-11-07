@@ -308,7 +308,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     _menuController.closeMenu();
     if (widgetId == 2) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+          context, MaterialPageRoute(builder: (context) => CreatProfile()));
     }
   }
 
