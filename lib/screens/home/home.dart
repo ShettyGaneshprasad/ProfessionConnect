@@ -61,13 +61,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
         gradient: LinearGradient(
           colors: <Color>[
-            // Colors.yellow,
-            // Color(0xFFFF3E4D),
-             Color(0xFFFE5572),
-          Color(0xFFFCAA44),
-           
+            Color(0xFFFEA444),
+            Color(0xFFFF6669),
+            Color(0xFFFE5574),
           ],
-          
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
@@ -82,16 +79,25 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
       child: new Scaffold(
         appBar: buildAppBar(),
-        body: _page==0?buildPage(0): _page==1?buildPage(1):_page==2?buildPage(2):_page==3?buildPage(3):_page==3?buildPage(3):buildPage(4),
+        body: _page == 0
+            ? buildPage(0)
+            : _page == 1
+                ? buildPage(1)
+                : _page == 2
+                    ? buildPage(2)
+                    : _page == 3
+                        ? buildPage(3)
+                        : _page == 3
+                            ? buildPage(3)
+                            : buildPage(4),
         bottomNavigationBar: buildCurvedNavigationBar(),
       ),
     );
   }
 
- Container buildPage(int number){
-
-return  Container(
-      color: Color(0xFFFFA841),
+  Container buildPage(int number) {
+    return Container(
+      color: Colors.white,
       child: Center(
         child: Column(
           children: <Widget>[
@@ -100,7 +106,7 @@ return  Container(
         ),
       ),
     );
- }
+  }
 
   CurvedNavigationBar buildCurvedNavigationBar() {
     return CurvedNavigationBar(
@@ -114,9 +120,9 @@ return  Container(
         Icon(Icons.notifications_active, size: 30),
         Icon(Icons.more_vert, size: 30),
       ],
-      color:Colors.deepOrange,
-      buttonBackgroundColor: Colors.white,
-      backgroundColor: Color(0xffFFA841),
+      color: Color(0xffffc864),
+      buttonBackgroundColor: Color(0xffffc864),
+      backgroundColor: Colors.white,
       animationCurve: Curves.easeInOut,
       animationDuration: Duration(milliseconds: 600),
       onTap: (index) {
@@ -131,10 +137,10 @@ return  Container(
     return new AppBar(
       elevation: 10.0,
       centerTitle: true,
-      backgroundColor: Colors.deepOrange,
+      backgroundColor: Color(0xffffc864),
       leading: new GestureDetector(
         child: Container(
-          color: Colors.deepOrange,
+          color: Color(0xffffc864),
           child: const Icon(
             Icons.menu,
             color: Colors.black,
