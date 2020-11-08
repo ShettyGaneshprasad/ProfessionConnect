@@ -100,7 +100,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Container buildPage(int number) {
     return Container(
-      color: Color(0xFFFFA841),
+      color: Colors.white,
       child: Center(
         child: Column(
           children: <Widget>[
@@ -123,9 +123,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         Icon(Icons.notifications_active, size: 30),
         Icon(Icons.more_vert, size: 30),
       ],
-      color: Colors.deepOrange,
-      buttonBackgroundColor: Colors.white,
-      backgroundColor: Color(0xffFFA841),
+      color: Color(0xffFFA841),
+      buttonBackgroundColor: Color(0xffFFA841),
+      backgroundColor: Colors.white,
       animationCurve: Curves.easeInOut,
       animationDuration: Duration(milliseconds: 600),
       onTap: (index) {
@@ -140,10 +140,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return new AppBar(
       elevation: 10.0,
       centerTitle: true,
-      backgroundColor: Colors.deepOrange,
+      backgroundColor: Color(0xffFFA841),
       leading: new GestureDetector(
         child: Container(
-          color: Colors.deepOrange,
+          color: Color(0xffFFA841),
           child: const Icon(
             Icons.menu,
             color: Colors.black,

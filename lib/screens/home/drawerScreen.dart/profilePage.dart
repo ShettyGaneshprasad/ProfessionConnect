@@ -142,7 +142,11 @@ class _CreateProfileState extends State<CreateProfile> {
                 ? NetworkImage(
                     'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
                   )
-                : FileImage(File(_imageFile.path)),
+                : FileImage(
+                    File(
+                      _imageFile.path,
+                    ),
+                  ),
           ),
         ),
         Container(
