@@ -35,7 +35,7 @@ class _CreateProfileState extends State<CreateProfile> {
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             children: <Widget>[
-              // imageProfile(),
+              imageProfile(),
               SizedBox(
                 height: 20,
               ),
@@ -132,43 +132,41 @@ class _CreateProfileState extends State<CreateProfile> {
     );
   }
 
-  // Widget imageProfile() {
-  //   return Center(
-  //     child: Column(
-  //       children: [
-  //         Expanded(
-  //           child: Stack(children: <Widget>[
-  //             // CircleAvatar(
-  //             //   radius: 80.0,
-  //             //   backgroundImage: _imageFile == null
-  //             //       ? NetworkImage(
-  //             //           'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-  //             //         )
-  //             //       : FileImage(File(_imageFile.path)),
-  //             // ),
-  //             Positioned(
-  //               bottom: 20.0,
-  //               right: 20.0,
-  //               child: InkWell(
-  //                 onTap: () {
-  //                   showModalBottomSheet(
-  //                     context: context,
-  //                     builder: ((builder) => bottomSheet()),
-  //                   );
-  //                 },
-  //                 child: Icon(
-  //                   Icons.camera_alt,
-  //                   color: Colors.teal,
-  //                   size: 28.0,
-  //                 ),
-  //               ),
-  //             ),
-  //           ]),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget imageProfile() {
+    return Center(
+      child: Stack(children: <Widget>[
+        Container(
+          child: CircleAvatar(
+            radius: 80.0,
+            backgroundImage: _imageFile == null
+                ? NetworkImage(
+                    'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
+                  )
+                : FileImage(File(_imageFile.path)),
+          ),
+        ),
+        Container(
+          child: Positioned(
+            bottom: 20.0,
+            right: 20.0,
+            child: InkWell(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: ((builder) => bottomSheet()),
+                );
+              },
+              child: Icon(
+                Icons.camera_alt,
+                color: Colors.teal,
+                size: 28.0,
+              ),
+            ),
+          ),
+        ),
+      ]),
+    );
+  }
 
   Widget bottomSheet() {
     return Container(

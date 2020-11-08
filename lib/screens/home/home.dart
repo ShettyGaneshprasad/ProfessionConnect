@@ -1,5 +1,5 @@
 import 'package:ProfessionConnect/models/user.dart';
-import 'package:ProfessionConnect/screens/home/drawerScreen.dart/dummyprofile.dart';
+
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/profilePage.dart';
 import 'package:ProfessionConnect/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
