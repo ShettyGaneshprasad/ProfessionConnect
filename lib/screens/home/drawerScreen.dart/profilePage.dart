@@ -6,15 +6,14 @@ import 'dart:io';
 import 'package:ProfessionConnect/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
-class CreatProfile extends StatefulWidget {
-  CreatProfile({Key key}) : super(key: key);
-
+class CreateProfile extends StatefulWidget {
   @override
-  _CreatProfileState createState() => _CreatProfileState();
+  _CreateProfileState createState() => _CreateProfileState();
 }
 
-class _CreatProfileState extends State<CreatProfile> {
+class _CreateProfileState extends State<CreateProfile> {
   //final networkHandler = NetworkHandler();
   bool circular = false;
   PickedFile _imageFile;
@@ -30,136 +29,146 @@ class _CreatProfileState extends State<CreatProfile> {
     return Scaffold(
       body: Form(
         key: _globalkey,
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          children: <Widget>[
-            imageProfile(),
-            SizedBox(
-              height: 20,
-            ),
-            getHeaderText(),
-            SizedBox(
-              height: 20,
-            ),
-            nameTextField(),
-            SizedBox(
-              height: 20,
-            ),
-            professionTextField(),
-            SizedBox(
-              height: 20,
-            ),
-            ageField(),
-            SizedBox(
-              height: 20,
-            ),
-            titleTextField(),
-            SizedBox(
-              height: 20,
-            ),
-            aboutTextField(),
-            SizedBox(
-              height: 20,
-            ),
-            // InkWell(
-            //   onTap: () async {
-            //     setState(() {
-            //       circular = true;
-            //     });
-            //     if (_globalkey.currentState.validate()) {
-            //       Map<String, String> data = {
-            //         "name": _name.text,
-            //         "profession": _profession.text,
-            //         "dob": _dob.text,
-            //         "title": _title.text,
-            //         "about": _about.text,
-            //       };
-            //       var response =
-            //           await networkHandler.post("/profile/add", data);
-            //       if (response.statusCode == 200 ||
-            //           response.statusCode == 201) {
-            //         if (_imageFile.path != null) {
-            //           var imageResponse = await networkHandler.patchImage(
-            //               "/profile/add/image", _imageFile.path);
-            //           if (imageResponse.statusCode == 200) {
-            //             setState(() {
-            //               circular = false;
-            //             });
-            //             Navigator.of(context).pushAndRemoveUntil(
-            //                 MaterialPageRoute(builder: (context) => HomePage()),
-            //                 (route) => false);
-            //           }
-            //         } else {
-            //           setState(() {
-            //             circular = false;
-            //           });
-            //           Navigator.of(context).pushAndRemoveUntil(
-            //               MaterialPageRoute(builder: (context) => HomePage()),
-            //               (route) => false);
-            //         }
-            //       }
-            //     }
-            //   },
-            //   child: Center(
-            //     child: Container(
-            //       width: 200,
-            //       height: 50,
-            //       decoration: BoxDecoration(
-            //         color: Colors.teal,
-            //         borderRadius: BorderRadius.circular(10),
-            //       ),
-            //       child: Center(
-            //         child: circular
-            //             ? CircularProgressIndicator()
-            //             : Text(
-            //                 "Submit",
-            //                 style: TextStyle(
-            //                   color: Colors.white,
-            //                   fontSize: 18,
-            //                   fontWeight: FontWeight.bold,
-            //                 ),
-            //               ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-          ],
+        child: Container(
+          height: double.infinity, // Change as per your requirement
+          width: double.infinity,
+          child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            children: <Widget>[
+              // imageProfile(),
+              SizedBox(
+                height: 20,
+              ),
+              getHeaderText(),
+              SizedBox(
+                height: 20,
+              ),
+              nameTextField(),
+              SizedBox(
+                height: 20,
+              ),
+              professionTextField(),
+              SizedBox(
+                height: 20,
+              ),
+              ageField(),
+              SizedBox(
+                height: 20,
+              ),
+              titleTextField(),
+              SizedBox(
+                height: 20,
+              ),
+              // aboutTextField(),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // InkWell(
+              //   onTap: () async {
+              //     setState(() {
+              //       circular = true;
+              //     });
+              //     if (_globalkey.currentState.validate()) {
+              //       Map<String, String> data = {
+              //         "name": _name.text,
+              //         "profession": _profession.text,
+              //         "dob": _dob.text,
+              //         "title": _title.text,
+              //         "about": _about.text,
+              //       };
+              //       var response =
+              //           await networkHandler.post("/profile/add", data);
+              //       if (response.statusCode == 200 ||
+              //           response.statusCode == 201) {
+              //         if (_imageFile.path != null) {
+              //           var imageResponse = await networkHandler.patchImage(
+              //               "/profile/add/image", _imageFile.path);
+              //           if (imageResponse.statusCode == 200) {
+              //             setState(() {
+              //               circular = false;
+              //             });
+              //             Navigator.of(context).pushAndRemoveUntil(
+              //                 MaterialPageRoute(builder: (context) => HomePage()),
+              //                 (route) => false);
+              //      s     }
+              //         } else {
+              //           setState(() {
+              //             circular = false;
+              //           });
+              //           Navigator.of(context).pushAndRemoveUntil(
+              //               MaterialPageRoute(builder: (context) => HomePage()),
+              //               (route) => false);
+              //         }
+              //       }
+              //     }
+              //   },
+              //   child: Center(
+              //     child: Container(
+              //       width: 200,
+              //       height: 50,
+              //       decoration: BoxDecoration(
+              //         color: Colors.teal,
+              //         borderRadius: BorderRadius.circular(10),
+              //       ),
+              //       child: Center(
+              //         child: circular
+              //             ? CircularProgressIndicator()
+              //             : Text(
+              //                 "Submit",
+              //                 style: TextStyle(
+              //                   color: Colors.white,
+              //                   fontSize: 18,
+              //                   fontWeight: FontWeight.bold,
+              //                 ),
+              //               ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget imageProfile() {
-    return Center(
-      child: Stack(children: <Widget>[
-        CircleAvatar(
-          radius: 80.0,
-          backgroundImage: _imageFile == null
-              ? NetworkImage(
-                  'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-                )
-              : FileImage(File(_imageFile.path)),
-        ),
-        Positioned(
-          bottom: 20.0,
-          right: 20.0,
-          child: InkWell(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                builder: ((builder) => bottomSheet()),
-              );
-            },
-            child: Icon(
-              Icons.camera_alt,
-              color: Colors.teal,
-              size: 28.0,
-            ),
-          ),
-        ),
-      ]),
-    );
-  }
+  // Widget imageProfile() {
+  //   return Center(
+  //     child: Column(
+  //       children: [
+  //         Expanded(
+  //           child: Stack(children: <Widget>[
+  //             // CircleAvatar(
+  //             //   radius: 80.0,
+  //             //   backgroundImage: _imageFile == null
+  //             //       ? NetworkImage(
+  //             //           'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
+  //             //         )
+  //             //       : FileImage(File(_imageFile.path)),
+  //             // ),
+  //             Positioned(
+  //               bottom: 20.0,
+  //               right: 20.0,
+  //               child: InkWell(
+  //                 onTap: () {
+  //                   showModalBottomSheet(
+  //                     context: context,
+  //                     builder: ((builder) => bottomSheet()),
+  //                   );
+  //                 },
+  //                 child: Icon(
+  //                   Icons.camera_alt,
+  //                   color: Colors.teal,
+  //                   size: 28.0,
+  //                 ),
+  //               ),
+  //             ),
+  //           ]),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget bottomSheet() {
     return Container(
@@ -206,22 +215,25 @@ class _CreatProfileState extends State<CreatProfile> {
       source: source,
     );
     setState(() {
-      _imageFile = pickedFile;
+      _imageFile = pickedFile ??
+          NetworkImage(
+            'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
+          );
     });
   }
 
   getHeaderText() {
-    // final userdata = Provider.of<User>(context);
-    // return Text(
-    //   userdata.email,
-    //   maxLines: 1,
-    //   textAlign: TextAlign.center,
-    //   style: TextStyle(
-    //     color: Colors.white,
-    //     fontSize: 12,
-    //     decoration: TextDecoration.none,
-    //   ),
-    // );
+    final userdata = Provider.of<User>(context);
+    return Text(
+      userdata.email,
+      maxLines: 1,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 12,
+        decoration: TextDecoration.none,
+      ),
+    );
   }
 
   Widget nameTextField() {
@@ -284,6 +296,9 @@ class _CreatProfileState extends State<CreatProfile> {
 
   Widget ageField() {
     return TextFormField(
+      onChanged: (value) {
+        print(value);
+      },
       controller: _age,
       validator: (value) {
         if (value.isEmpty) return "Age can't be empty";

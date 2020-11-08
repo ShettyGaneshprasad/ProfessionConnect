@@ -1,4 +1,5 @@
 import 'package:ProfessionConnect/models/user.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/dummyprofile.dart';
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/profilePage.dart';
 import 'package:ProfessionConnect/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -308,7 +309,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     _menuController.closeMenu();
     if (widgetId == 2) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CreatProfile()));
+          context, MaterialPageRoute(builder: (context) => CreateProfile()));
     }
   }
 
