@@ -19,6 +19,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
   MenuController _menuController;
+  Color mainColor = Color(0xffFFC312);
 
   /// ---------------------------
   /// inilizing controllers and state .
@@ -90,9 +91,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     ? buildPage(2)
                     : _page == 3
                         ? buildPage(3)
-                        : _page == 3
-                            ? buildPage(3)
-                            : buildPage(4),
+                        : _page == 3 ? buildPage(3) : buildPage(4),
         bottomNavigationBar: buildCurvedNavigationBar(),
       ),
     );
@@ -123,8 +122,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         Icon(Icons.notifications_active, size: 30),
         Icon(Icons.more_vert, size: 30),
       ],
-      color: Color(0xffFFA841),
-      buttonBackgroundColor: Color(0xffFFA841),
+      color: mainColor,
+      buttonBackgroundColor: mainColor,
       backgroundColor: Colors.white,
       animationCurve: Curves.easeInOut,
       animationDuration: Duration(milliseconds: 600),
@@ -140,10 +139,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return new AppBar(
       elevation: 10.0,
       centerTitle: true,
-      backgroundColor: Color(0xffFFA841),
+      backgroundColor: mainColor,
       leading: new GestureDetector(
         child: Container(
-          color: Color(0xffFFA841),
+          color: mainColor,
           child: const Icon(
             Icons.menu,
             color: Colors.black,
