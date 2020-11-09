@@ -1,6 +1,6 @@
 import 'package:ProfessionConnect/models/user.dart';
 
-import 'package:ProfessionConnect/screens/home/drawerScreen.dart/profilePage.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 import 'package:ProfessionConnect/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -19,7 +19,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
   MenuController _menuController;
-  Color mainColor = Color(0xffFFC312);
+  Color mainColor = Color(0xff79fadb);
 
   /// ---------------------------
   /// inilizing controllers and state .
@@ -91,7 +91,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     ? buildPage(2)
                     : _page == 3
                         ? buildPage(3)
-                        : _page == 3 ? buildPage(3) : buildPage(4),
+                        : _page == 3
+                            ? buildPage(3)
+                            : buildPage(4),
         bottomNavigationBar: buildCurvedNavigationBar(),
       ),
     );
@@ -99,11 +101,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Container buildPage(int number) {
     return Container(
-      color: Colors.white,
+      color: Colors.black,
       child: Center(
         child: Column(
           children: <Widget>[
-            Text(number.toString(), textScaleFactor: 10.0),
+            Text(
+              number.toString(),
+              textScaleFactor: 10.0,
+              style: TextStyle(
+                color: mainColor,
+              ),
+            ),
           ],
         ),
       ),
@@ -124,7 +132,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       ],
       color: mainColor,
       buttonBackgroundColor: mainColor,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       animationCurve: Curves.easeInOut,
       animationDuration: Duration(milliseconds: 600),
       onTap: (index) {
@@ -307,7 +315,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     _menuController.closeMenu();
     if (widgetId == 2) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CreateProfile()));
+          context, MaterialPageRoute(builder: (context) => EditProfile()));
     }
   }
 

@@ -7,14 +7,13 @@ import 'package:ProfessionConnect/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:ProfessionConnect/screens/home/home.dart';
 
-class CreateProfile extends StatefulWidget {
+class EditProfile extends StatefulWidget {
   @override
-  _CreateProfileState createState() => _CreateProfileState();
+  _EditProfileState createState() => _EditProfileState();
 }
 
-class _CreateProfileState extends State<CreateProfile> {
+class _EditProfileState extends State<EditProfile> {
   //final networkHandler = NetworkHandler();
   bool circular = false;
   PickedFile _imageFile;
@@ -31,10 +30,10 @@ class _CreateProfileState extends State<CreateProfile> {
       appBar: AppBar(
         elevation: 10.0,
         centerTitle: true,
-        backgroundColor: Color(0xffFFC312),
+        backgroundColor: Color(0xff79fadb),
         leading: new GestureDetector(
           child: Container(
-            color: Color(0xffFFC312),
+            color: Color(0xff79fadb),
             child: const Icon(
               Icons.arrow_back,
               color: Colors.black,
@@ -68,6 +67,7 @@ class _CreateProfileState extends State<CreateProfile> {
       body: Form(
         key: _globalkey,
         child: Container(
+          // color: Colors.black,
           height: double.infinity, // Change as per your requirement
           width: double.infinity,
           child: ListView(
@@ -285,6 +285,8 @@ class _CreateProfileState extends State<CreateProfile> {
         return null;
       },
       decoration: InputDecoration(
+        fillColor: Colors.red,
+        hoverColor: Colors.red,
         border: OutlineInputBorder(
             borderSide: BorderSide(
           color: Colors.teal,
