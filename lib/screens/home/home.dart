@@ -222,14 +222,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   /// Building one item  for drawer with helper method.
                   /// ---------------------------
 
-                  getMaterialResideMenuItem('Home', Icons.ac_unit, 1),
-                  getMaterialResideMenuItem('Profile', Icons.ac_unit, 2),
-                  getMaterialResideMenuItem('Message', Icons.ac_unit, 3),
-                  getMaterialResideMenuItem('Requests', Icons.ac_unit, 4),
-                  getMaterialResideMenuItem('Tickets', Icons.ac_unit, 5),
+                  getMaterialResideMenuItem('Home', Icons.home, 1),
+                  getMaterialResideMenuItem('Profile', Icons.account_circle, 2),
+                  getMaterialResideMenuItem('Saved Job', Icons.favorite, 3),
                   getMaterialResideMenuItem(
-                      'Account Settings', Icons.ac_unit, 6),
-                  getMaterialResideMenuItem('About us', Icons.error, 7),
+                      'Account Settings', Icons.settings, 6),
+                  getMaterialResideMenuItem('Report Bugs', Icons.bug_report, 6),
+                  getMaterialResideMenuItem('About us', Icons.group, 7),
                 ],
               ),
             ),

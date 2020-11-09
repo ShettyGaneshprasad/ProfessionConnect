@@ -7,6 +7,7 @@ import 'package:ProfessionConnect/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:ProfessionConnect/screens/home/home.dart';
 
 class CreateProfile extends StatefulWidget {
   @override
@@ -27,6 +28,43 @@ class _CreateProfileState extends State<CreateProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 10.0,
+        centerTitle: true,
+        backgroundColor: Color(0xffFFC312),
+        leading: new GestureDetector(
+          child: Container(
+            color: Color(0xffFFC312),
+            child: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+          ),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: new Text(
+          'Profession Connect',
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.mode_edit,
+              color: Colors.black,
+            ),
+            onPressed: () => {},
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.save,
+              color: Colors.black,
+            ),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: Form(
         key: _globalkey,
         child: Container(
