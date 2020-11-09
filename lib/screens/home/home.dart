@@ -1,4 +1,6 @@
 import 'package:ProfessionConnect/models/user.dart';
+
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 import 'package:ProfessionConnect/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -17,6 +19,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
   MenuController _menuController;
+  Color mainColor = Color(0xff79fadb);
 
   /// ---------------------------
   /// inilizing controllers and state .
@@ -63,11 +66,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           colors: <Color>[
             // Colors.yellow,
             // Color(0xFFFF3E4D),
-             Color(0xFFFE5572),
-          Color(0xFFFCAA44),
-           
+            Color(0xFFFE5572),
+            Color(0xFFFCAA44),
           ],
-          
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
@@ -82,25 +83,40 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
       child: new Scaffold(
         appBar: buildAppBar(),
-        body: _page==0?buildPage(0): _page==1?buildPage(1):_page==2?buildPage(2):_page==3?buildPage(3):_page==3?buildPage(3):buildPage(4),
+        body: _page == 0
+            ? buildPage(0)
+            : _page == 1
+                ? buildPage(1)
+                : _page == 2
+                    ? buildPage(2)
+                    : _page == 3
+                        ? buildPage(3)
+                        : _page == 3
+                            ? buildPage(3)
+                            : buildPage(4),
         bottomNavigationBar: buildCurvedNavigationBar(),
       ),
     );
   }
 
- Container buildPage(int number){
-
-return  Container(
-      color: Color(0xFFFFA841),
+  Container buildPage(int number) {
+    return Container(
+      color: Colors.black,
       child: Center(
         child: Column(
           children: <Widget>[
-            Text(number.toString(), textScaleFactor: 10.0),
+            Text(
+              number.toString(),
+              textScaleFactor: 10.0,
+              style: TextStyle(
+                color: mainColor,
+              ),
+            ),
           ],
         ),
       ),
     );
- }
+  }
 
   CurvedNavigationBar buildCurvedNavigationBar() {
     return CurvedNavigationBar(
@@ -114,9 +130,9 @@ return  Container(
         Icon(Icons.notifications_active, size: 30),
         Icon(Icons.more_vert, size: 30),
       ],
-      color:Colors.deepOrange,
-      buttonBackgroundColor: Colors.white,
-      backgroundColor: Color(0xffFFA841),
+      color: mainColor,
+      buttonBackgroundColor: mainColor,
+      backgroundColor: Colors.black,
       animationCurve: Curves.easeInOut,
       animationDuration: Duration(milliseconds: 600),
       onTap: (index) {
@@ -131,10 +147,10 @@ return  Container(
     return new AppBar(
       elevation: 10.0,
       centerTitle: true,
-      backgroundColor: Colors.deepOrange,
+      backgroundColor: mainColor,
       leading: new GestureDetector(
         child: Container(
-          color: Colors.deepOrange,
+          color: mainColor,
           child: const Icon(
             Icons.menu,
             color: Colors.black,
@@ -214,14 +230,13 @@ return  Container(
                   /// Building one item  for drawer with helper method.
                   /// ---------------------------
 
-                  getMaterialResideMenuItem('Home', Icons.ac_unit, 1),
-                  getMaterialResideMenuItem('Profile', Icons.ac_unit, 2),
-                  getMaterialResideMenuItem('Message', Icons.ac_unit, 3),
-                  getMaterialResideMenuItem('Requests', Icons.ac_unit, 4),
-                  getMaterialResideMenuItem('Tickets', Icons.ac_unit, 5),
+                  getMaterialResideMenuItem('Home', Icons.home, 1),
+                  getMaterialResideMenuItem('Profile', Icons.account_circle, 2),
+                  getMaterialResideMenuItem('Saved Job', Icons.favorite, 3),
                   getMaterialResideMenuItem(
-                      'Account Settings', Icons.ac_unit, 6),
-                  getMaterialResideMenuItem('About us', Icons.error, 7),
+                      'Account Settings', Icons.settings, 6),
+                  getMaterialResideMenuItem('Report Bugs', Icons.bug_report, 6),
+                  getMaterialResideMenuItem('About us', Icons.group, 7),
                 ],
               ),
             ),
@@ -298,6 +313,10 @@ return  Container(
         this.widgetId = widgetId;
       });
     _menuController.closeMenu();
+    if (widgetId == 2) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => EditProfile()));
+    }
   }
 
   Material getMaterialResideMenuItem(
