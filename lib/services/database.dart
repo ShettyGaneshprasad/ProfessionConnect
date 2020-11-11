@@ -3,23 +3,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
 class DatabaseService {
-  final String uid;
-
-  DatabaseService({this.uid});
+  User user;
+  String uid;
+  String email;
   Map data;
-  addData() {
-    Map<String, dynamic> newData = {
-      "name": "shetty",
-      "email": "gs00619@gmail.com"
-    };
-    CollectionReference collectionReference =
-        Firestore.instance.collection('users');
-    collectionReference.document('gs00619@gmail.com').setData(newData);
+
+  DatabaseService({
+    this.user,
+  });
+  //initializing while registeration
+  DatabaseService.withuid({this.uid});
+
+
+  // used while initializing to save data in db 
+  Future<void>addDataDuringRegistration({email}) {
+     CollectionReference collectionReference =
+        Firestore.instance.collection('usersData');
+    collectionReference.document(uid).setData({
+      'email': email,
+    });
   }
 
   // collection reference
-  final CollectionReference userCollection =
-      Firestore.instance.collection('userdata');
+  // final CollectionReference userCollection =
+  //     Firestore.instance.collection('userdata');
 
   // Future<void> updateUserData(String sugars, String name, int strength) async {
   //   return await userCollection.document(uid).setData({
@@ -29,13 +36,68 @@ class DatabaseService {
   //   });
   // }
 
-  Future<void> updateUserData({String email, String name, int age}) async {
+
+
+// use to update user data
+  Future<void> updateUserData(
+      {String email,
+      String name,
+      int age,
+      String profession,
+      String title}) async {
+    String newEmail = email ?? user.email;
+    String newName = name ?? user.name;
+    String newProfession = email ?? user.profession;
+    String newtitle = title ?? user.title;
+    int newAge = age ?? user.age;
     CollectionReference collectionReference =
-        Firestore.instance.collection('users');
-    collectionReference.document(uid).setData({
-      'email': email,
-      'name': name,
-      'age': age,
+        Firestore.instance.collection('usersData');
+    collectionReference.document(user.uid).setData({
+      'email': newEmail,
+      'name': newName,
+      'profession': newProfession,
+      'title': newtitle,
+      'age': newAge,
     });
   }
+
+
+// to add a new job
+    Future<void> updateJobData(
+      String companyName,
+      String position,
+      int salary,
+      String description,
+      
+    ) async {
+    String newdescription = description ?? "description";
+    String newposition = position ?? "position";
+    String newcompanyName = companyName ?? "Companyname";
+   
+    int newSalary = salary ?? 0;
+    CollectionReference collectionReference =
+        Firestore.instance.collection('usersData');
+    collectionReference.document(user.uid).setData({
+      'companyName': newcompanyName,
+      'position': newposition,
+      'description': newdescription,
+      'salary': newSalary,
+      'useruid': user.uid
+ 
+    });
+  }
+
+  //delete a job
+    Future<void> deleteJobData({String jobId}){
+
+       CollectionReference collectionReference =
+        Firestore.instance.collection('jobListing');
+        collectionReference.document(jobId).delete();
+
+    }
+
+
+
+
+
 }

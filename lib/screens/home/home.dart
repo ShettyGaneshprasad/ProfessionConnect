@@ -49,8 +49,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     double height = setHeightPercentage(100, context);
-    final userdata = Provider.of<User>(context);
-    DatabaseService db = DatabaseService(uid: userdata.uid);
 
     /// ---------------------------
     /// Building Scaffold Reside Menu drawer .
@@ -144,6 +142,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   AppBar buildAppBar() {
+    // final userdata = Provider.of<User>(context);
+    // DatabaseService db = DatabaseService(user:  userdata);
     return new AppBar(
       elevation: 10.0,
       centerTitle: true,
@@ -180,9 +180,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           onPressed: () {
             //temporary for testing db update user
             // db.updateUserData(
-            //     age: 12,
-            //     email: userdata.email,
-            //     name: 'Shetty Ganeshprasad');
+            //     age: 22, email: userdata.email, name: 'Shetty Ganeshprasad',profession:'profession',title:'title');
+            // db.deleteJobData(jobId: 'gs');
           },
         ),
       ],
