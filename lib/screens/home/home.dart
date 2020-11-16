@@ -2,12 +2,16 @@ import 'package:ProfessionConnect/models/user.dart';
 
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 import 'package:ProfessionConnect/services/auth.dart';
+import 'package:ProfessionConnect/services/githubJobs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ProfessionConnect/models/githubJobs.dart';
 import 'package:ProfessionConnect/services/database.dart';
+
+import 'gihubJobsScreen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -170,7 +174,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             Icons.search,
             color: Colors.black,
           ),
-          onPressed: () => {},
+          onPressed: () => {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => GithubJobScreen()))
+            // getNews(), print("search pressed")
+          },
         ),
         IconButton(
           icon: Icon(
