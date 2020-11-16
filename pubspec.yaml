@@ -38,6 +38,7 @@ dependencies:
   form_field_validator: ^1.0.1
   image_picker: ^0.6.7+12
   flutter_html_view:
+  flutter_markdown:
 
 dev_dependencies:
   flutter_test:

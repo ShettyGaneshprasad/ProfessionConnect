@@ -2,6 +2,8 @@ import 'package:ProfessionConnect/models/githubJobs.dart';
 import 'package:ProfessionConnect/services/githubJobs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html_view/flutter_html_view.dart';
+import 'package:html2md/html2md.dart' as html2md;
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class GithubJobScreen extends StatefulWidget {
   @override
@@ -93,6 +95,7 @@ class BlogTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String descmarkdown = html2md.convert(desc);
     return GestureDetector(
       onTap: () {
         // Navigator.push(
@@ -105,7 +108,7 @@ class BlogTile extends StatelessWidget {
       child: Container(
           child: Column(
         children: <Widget>[
-          Image.network(imgUrl),
+          // Image.network(imgUrl),
           SizedBox(
             height: 10,
           ),
@@ -124,7 +127,7 @@ class BlogTile extends StatelessWidget {
             child:
                 // HtmlView(data: desc),
                 Text(
-              desc,
+              descmarkdown,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 15,

@@ -196,7 +196,7 @@ packages:
     source: hosted
     version: "0.5.12"
   flutter_markdown:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_markdown
       url: "https://pub.dartlang.org"
