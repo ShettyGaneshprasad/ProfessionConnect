@@ -1,8 +1,10 @@
 import 'package:ProfessionConnect/models/user.dart';
 
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
+import 'package:ProfessionConnect/screens/home/githubJobs/gihubJobsScreen.dart';
 import 'package:ProfessionConnect/services/auth.dart';
 import 'package:ProfessionConnect/services/githubJobs.dart';
+import 'package:ProfessionConnect/shared/loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,14 +13,14 @@ import 'package:provider/provider.dart';
 import 'package:ProfessionConnect/models/githubJobs.dart';
 import 'package:ProfessionConnect/services/database.dart';
 
-import 'gihubJobsScreen.dart';
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
+  List<GithubJobsModel> githubJobsList = new List<GithubJobsModel>();
+  bool _loading = true;
   int widgetId = 1;
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
@@ -31,8 +33,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    getNews();
     super.initState();
     _menuController = MenuController(vsync: this);
+  }
+
+  getNews() async {
+    GithubJobs githubJobs = GithubJobs();
+    print("github jobs object created");
+    await githubJobs.getNews();
+    print("exectuted job list and created news");
+    githubJobsList = githubJobs.githubJobsList;
+    setState(() {
+      _loading = false;
+    });
   }
 
   /// ---------------------------
@@ -90,9 +104,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             : _page == 1
                 ? buildPage(1)
                 : _page == 2
-                    ? buildPage(2)
+                    ? GithubJobScreen(
+                        githubJobsList: githubJobsList,
+                      )
                     : _page == 3
-                        ? buildPage(3)
+                        ? _loading
+                            ? Loading()
+                            : buildPage(3)
                         : _page == 3
                             ? buildPage(3)
                             : buildPage(4),

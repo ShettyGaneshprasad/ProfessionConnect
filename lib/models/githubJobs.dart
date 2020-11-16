@@ -2,7 +2,7 @@ class GithubJobsModel {
   String id;
   String type;
   String url;
-  String company;
+  String companyName;
   String companyUrl;
   String location;
   String title;
@@ -11,7 +11,7 @@ class GithubJobsModel {
   String companyLogo;
 
   GithubJobsModel(
-      {this.company,
+      {this.companyName,
       this.companyLogo,
       this.companyUrl,
       this.description,

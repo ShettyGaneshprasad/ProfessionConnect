@@ -21,12 +21,12 @@ class GithubJobs {
       //     element["source"]["name"] == "CNN")
       print("getting job");
       GithubJobsModel githubJobsModel = GithubJobsModel(
-        company: element['company'],
+        companyName: element['company'],
         description: element['description'],
         title: element['title'],
         url: element['url'],
-        companyLogo: element['companyLogo'],
-        companyUrl: element['companyUrl'],
+        companyLogo: element['company_logo'],
+        companyUrl: element['company_url'],
         howToApply: element['how_to_apply'],
         location: element['location'],
         id: element['id'],
