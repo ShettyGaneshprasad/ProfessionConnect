@@ -1,3 +1,4 @@
+
 on:
   push:
     branches:
@@ -9,9 +10,8 @@ jobs:
     name: Build Apps
     runs-on: ubuntu-latest
     steps:
-      - name: Set env var
-        run: |
-          echo "::set-env name=TEST_FILE_NAME::test-${{ github.sha }}"
+      - name: Export Release Timestamp
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Set up Java
@@ -26,4 +26,10 @@ jobs:
         run: flutter pub get
       - name: Build Android App
         run: flutter build apk --split-per-abi
-     
+      - name: Release Apps
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ GITHUB_SHA_SHORT }}
+          name: ${{ GITHUB_SHA_SHORT }}
+          token: ${{ secrets.TOKEN_ProfessionConnect }}
+          artifacts: "build/app/outputs/apk/release/*.apk"
