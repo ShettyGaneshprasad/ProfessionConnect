@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Export Release Timestamp
-        run: echo "GITHUB_SHA_SHORT=$(date +'%Y-%m-%d_%H-%m-%S') >> $GITHUB_ENV
+        run: echo "GITHUB_SHA_SHORT=release_$(date +'%Y-%m-%d_%H-%m-%S')" >> $GITHUB_ENV
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Set up Java
