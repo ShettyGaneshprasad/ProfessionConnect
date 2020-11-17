@@ -9,6 +9,8 @@ jobs:
     name: Build Apps
     runs-on: ubuntu-latest
     steps:
+      - name: allow unsafe operation
+        run: ACTIONS_ALLOW_UNSECURE_COMMANDS=true;
       - name: Export Release Timestamp
         run: echo "::set-env name=APP_VERSION::release_$(date +'%Y-%m-%d_%H-%m-%S')"
       - name: Checkout repository
