@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Export Release Timestamp
-        run: echo "GITHUB_SHA_SHORT=release_$(date +'%Y-%m-%d_%H-%m-%S')" >> $GITHUB_ENV
+        run: echo "APP_VERSION=release_$(date +'%Y-%m-%d_%H-%m-%S')" >> $GITHUB_ENV
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Set up Java
@@ -29,7 +29,7 @@ jobs:
       - name: Release Apps
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ env.GITHUB_SHA_SHORT }}
-          name: ${{ env.GITHUB_SHA_SHORT }}
+          tag: ${{ env.APP_VERSION }}
+          name: ${{ env.APP_VERSION }}
           token: ${{ secrets.TOKEN_ProfessionConnect }}
           artifacts: "build/app/outputs/apk/release/*.apk"
