@@ -1,44 +1,22 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-
-@override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Details",
-      theme:ThemeData(
-        primarySwatch:Colors.orange,
-      ),
-      home:Companydetails(),
-      );
-  }
-}
-
-class Person 
-{
-final String companyname="Google";
+final String companyName="Google";
 final String  position="position:abc";
 final String  requirements="requirements:abc" ;
-final String jobdescription="jobdescription:xyz"; 
- var salary="salary:10000";
+final String jobDescription="jobdescription:xyz"; 
+var salary="salary:10000";
 
-}
 class Companydetails extends StatefulWidget {
-  @override
  
   _Details createState() => _Details();
 }
 
 class _Details extends State<Companydetails> {
-  @override
-  Person p = new Person();
   Widget build(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
           title: Text(
-            "company Details"
+             companyName,
           ),
           centerTitle:true ,
         ),
@@ -47,11 +25,11 @@ class _Details extends State<Companydetails> {
             children: <Widget> [
                CircleAvatar (
                  radius: 40,
-               backgroundImage: NetworkImage ('https://www.codemate.com/wp-content/uploads/2016/02/flutter-logo-round.png'),
+               backgroundImage: NetworkImage ('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRllVpgal57jpMmUQWQnCVDGnMEztY3NnKM2w&usqp=CAU'),
                  ),
               
         Text(
-           p.companyname,
+           companyName,
           style: new TextStyle(
                             fontSize: 25.0,
                             fontStyle: FontStyle.normal,
@@ -60,7 +38,7 @@ class _Details extends State<Companydetails> {
                          textAlign: TextAlign.center,
                 ),        
         Text(
-    p.position,
+    position,
    style: new TextStyle(
               fontSize: 15.0,
 fontStyle: FontStyle.normal,
@@ -70,7 +48,7 @@ fontStyle: FontStyle.normal,
              textAlign: TextAlign.center,
               ),
               Text(
-        p.salary.toString(),
+        salary.toString(),
    style: new TextStyle(
                             fontSize: 15.0,
         fontStyle: FontStyle.normal,
@@ -81,7 +59,7 @@ fontStyle: FontStyle.normal,
           textAlign: TextAlign.center,
               ),
                Text(
-       p.requirements,
+       requirements,
    style: new TextStyle(
               fontSize: 15.0,
 fontStyle: FontStyle.normal,
@@ -91,7 +69,7 @@ fontStyle: FontStyle.normal,
                         textAlign: TextAlign.center,
               ),
               Text(
-     p.jobdescription,
+    jobDescription,
  style: new TextStyle(
                        fontSize: 15.0,
                       fontStyle: FontStyle.normal,
@@ -144,31 +122,5 @@ fontStyle: FontStyle.normal,
      
    }
 }
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
