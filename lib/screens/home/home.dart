@@ -198,18 +198,94 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             // // getNews(), print("search pressed")
           },
         ),
-        IconButton(
-          icon: Icon(
-            Icons.notifications_none,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            //temporary for testing db update user
-            // db.updateUserData(
-            //     age: 22, email: userdata.email, name: 'Shetty Ganeshprasad',profession:'profession',title:'title');
-            // db.deleteJobData(jobId: 'gs');
+        GestureDetector(
+          onTap: () {
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => SingleChildScrollView(
+                        child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: Column(
+                        children: [
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          TextField(),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                          Text(
+                            "UI to add jobs",
+                            style: TextStyle(fontSize: 50),
+                          ),
+                        ],
+                      ),
+                    )));
           },
-        ),
+          child: Row(
+            children: [
+              Center(child: Text("Add Job")),
+              SizedBox(
+                width: 10,
+              ),
+              Icon(
+                Icons.library_add,
+                color: Colors.white,
+              ),
+              SizedBox(
+                width: 5,
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
