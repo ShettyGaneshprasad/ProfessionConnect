@@ -86,9 +86,6 @@ class _GithubJobScreenState extends State<GithubJobScreen> {
                                     desc: widget.githubJobsList[index]
                                             .description ??
                                         "",
-                                    content:
-                                        widget.githubJobsList[index].location ??
-                                            "",
                                     posturl:
                                         widget.githubJobsList[index].url ?? "",
                                   );
@@ -112,7 +109,7 @@ class JobTile extends StatelessWidget {
   final String imgUrl,
       title,
       desc,
-      content,
+      // content,
       posturl,
       companyName,
       companyUrl,
@@ -124,7 +121,7 @@ class JobTile extends StatelessWidget {
       {this.imgUrl,
       this.title,
       this.desc,
-      this.content,
+      // this.content,
       this.posturl,
       this.companyLogo,
       this.companyName,
@@ -132,7 +129,7 @@ class JobTile extends StatelessWidget {
       this.howToApply,
       this.location,
       this.type});
-
+  Color mainColor = Color(0xff79fadb);
   @override
   Widget build(BuildContext context) {
     String descmarkdown = html2md.convert(desc);
@@ -145,7 +142,7 @@ class JobTile extends StatelessWidget {
                       companyLogo: companyLogo,
                       companyName: companyName,
                       companyUrl: companyUrl,
-                      content: content,
+                      // content: content,
                       desc: descmarkdown,
                       howToApply: howToApply,
                       imgUrl: imgUrl,
@@ -160,14 +157,15 @@ class JobTile extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Card(
+              // color: mainColor,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
-                    Image.network(
-                      imgUrl,
-                      height: 150,
-                    ),
+                    // Image.network(
+                    //   imgUrl,
+                    //   height: 150,
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(

@@ -169,13 +169,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return new AppBar(
       elevation: 10.0,
       centerTitle: true,
-      backgroundColor: mainColor,
+      backgroundColor: Colors.black,
       leading: new GestureDetector(
         child: Container(
-          color: mainColor,
+          color: Colors.black,
           child: const Icon(
             Icons.menu,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         onTap: () {
@@ -184,24 +184,24 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       ),
       title: new Text(
         'Profession Connect',
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.white),
       ),
       actions: <Widget>[
         IconButton(
           icon: Icon(
             Icons.search,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () => {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => GithubJobScreen()))
-            // getNews(), print("search pressed")
+            // Navigator.push(context,
+            //     MaterialPageRoute(builder: (context) => GithubJobScreen()))
+            // // getNews(), print("search pressed")
           },
         ),
         IconButton(
           icon: Icon(
             Icons.notifications_none,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             //temporary for testing db update user
