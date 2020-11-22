@@ -33,6 +33,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    print(
+        "init state of home page\n\n\n\n\n\n\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\#####");
     getNews();
     super.initState();
     _menuController = MenuController(vsync: this);
@@ -104,13 +106,13 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             : _page == 1
                 ? buildPage(1)
                 : _page == 2
-                    ? GithubJobScreen(
-                        githubJobsList: githubJobsList,
-                      )
+                    ? _loading
+                        ? Loading()
+                        : GithubJobScreen(
+                            githubJobsList: githubJobsList,
+                          )
                     : _page == 3
-                        ? _loading
-                            ? Loading()
-                            : buildPage(3)
+                        ? buildPage(3)
                         : _page == 3
                             ? buildPage(3)
                             : buildPage(4),
