@@ -1,4 +1,5 @@
 import 'package:ProfessionConnect/models/user.dart';
+import 'package:ProfessionConnect/screens/home/ProfessionConnectJobs/displayProfessionConnectJobs.dart';
 
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 import 'package:ProfessionConnect/screens/home/githubJobs/gihubJobsScreen.dart';
@@ -100,7 +101,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       child: new Scaffold(
         appBar: buildAppBar(),
         body: _page == 0
-            ? buildPage(0)
+            ? DisplayProfessionConnectJobs()
             : _page == 1
                 ? buildPage(1)
                 : _page == 2
