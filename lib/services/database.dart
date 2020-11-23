@@ -14,10 +14,9 @@ class DatabaseService {
   //initializing while registeration
   DatabaseService.withuid({this.uid});
 
-
-  // used while initializing to save data in db 
-  Future<void>addDataDuringRegistration({email}) {
-     CollectionReference collectionReference =
+  // used while initializing to save data in db
+  Future<void> addDataDuringRegistration({email}) {
+    CollectionReference collectionReference =
         Firestore.instance.collection('usersData');
     collectionReference.document(uid).setData({
       'email': email,
@@ -35,8 +34,6 @@ class DatabaseService {
   //     'strength': strength,
   //   });
   // }
-
-
 
 // use to update user data
   Future<void> updateUserData(
@@ -61,19 +58,33 @@ class DatabaseService {
     });
   }
 
+  Future<void> fetchUserData({String userID}) async {
+    CollectionReference collectionReference =
+        Firestore.instance.collection('usersData');
+
+    collectionReference.snapshots().listen((snapshot) {
+      List documents;
+
+      documents = snapshot.documents;
+
+      data = snapshot.documents[0].data;
+// informtaion will be in Map data which is a variable for this class
+
+//ooeration use as data['name'].toString();
+    });
+  }
 
 // to add a new job
-    Future<void> updateJobData(
-      String companyName,
-      String position,
-      int salary,
-      String description,
-      
-    ) async {
+  Future<void> updateJobData(
+    String companyName,
+    String position,
+    int salary,
+    String description,
+  ) async {
     String newdescription = description ?? "description";
     String newposition = position ?? "position";
     String newcompanyName = companyName ?? "Companyname";
-   
+
     int newSalary = salary ?? 0;
     CollectionReference collectionReference =
         Firestore.instance.collection('usersData');
@@ -83,21 +94,13 @@ class DatabaseService {
       'description': newdescription,
       'salary': newSalary,
       'useruid': user.uid
- 
     });
   }
 
   //delete a job
-    Future<void> deleteJobData({String jobId}){
-
-       CollectionReference collectionReference =
+  Future<void> deleteJobData({String jobId}) {
+    CollectionReference collectionReference =
         Firestore.instance.collection('jobListing');
-        collectionReference.document(jobId).delete();
-
-    }
-
-
-
-
-
+    collectionReference.document(jobId).delete();
+  }
 }
