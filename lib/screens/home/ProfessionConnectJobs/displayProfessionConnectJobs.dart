@@ -19,7 +19,7 @@ class _DisplayProfessionConnectJobs
   List<DocumentSnapshot> professionConnectJob;
 
   final CollectionReference collectionReference =
-      Firestore.instance.collection("professionConnectJob");
+      Firestore.instance.collection("jobListing");
 
   @override
   void initState() {
@@ -50,59 +50,68 @@ class _DisplayProfessionConnectJobs
                 shrinkWrap: true,
                 physics: ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  String imgPath = professionConnectJob[index].data['dummy'];
-                  return Text(imgPath);
-                  //  PCTile();
+                  String position =
+                      professionConnectJob[index].data['position'];
+                  String companyName =
+                      professionConnectJob[index].data['companyName'];
+                  String description =
+                      professionConnectJob[index].data['description'];
+                  String requirement =
+                      professionConnectJob[index].data['requirement'];
+                  String salary = professionConnectJob[index].data['salary'];
+                  String userUid = professionConnectJob[index].data['userUid'];
+                  String location =
+                      professionConnectJob[index].data['location'];
+
+                  return PCTile(
+                    companyName: companyName,
+                    description: description,
+                    location: location,
+                    position: position,
+                    requirement: requirement,
+                    salary: salary,
+                    userUid: userUid,
+                  );
                 })
             : new Loading());
   }
 }
 
 class PCTile extends StatelessWidget {
-  final String imgUrl,
-      title,
-      desc,
-      // content,
-      posturl,
+  final String position,
+      description,
       companyName,
-      companyUrl,
       location,
-      howToApply,
-      companyLogo,
-      type;
-  PCTile(
-      {this.imgUrl,
-      this.title,
-      this.desc,
-      // this.content,
-      this.posturl,
-      this.companyLogo,
-      this.companyName,
-      this.companyUrl,
-      this.howToApply,
-      this.location,
-      this.type});
-  Color mainColor = Color(0xff79fadb);
+      salary,
+      requirement,
+      userUid;
+  PCTile({
+    this.companyName,
+    this.description,
+    this.location,
+    this.position,
+    this.requirement,
+    this.salary,
+    this.userUid,
+  });
+  final Color mainColor = Color(0xff79fadb);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ProfessionConnectJobsDetails(
-                      companyLogo: companyLogo,
-                      companyName: companyName,
-                      companyUrl: companyUrl,
-                      // content: content,
-                      // desc: descmarkdown,
-                      howToApply: howToApply,
-                      imgUrl: imgUrl,
-                      location: location,
-                      posturl: posturl,
-                      title: title,
-                      type: type,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProfessionConnectJobsDetails(
+              description: description,
+              position: position,
+              requirement: requirement,
+              salary: salary,
+              companyName: companyName,
+              location: location,
+            ),
+          ),
+        );
       },
       child: Container(
           color: Colors.black,
@@ -121,20 +130,14 @@ class PCTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                        title,
+                        position,
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Text(
-                      "(" + type + ")",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold),
-                    ),
+
                     SizedBox(
                       height: 10,
                     ),

@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
 
 class ProfessionConnectJobsDetails extends StatefulWidget {
-  final String imgUrl,
-      title,
-      desc,
-      // content,
-      posturl,
+  final String position,
+      description,
       companyName,
-      companyUrl,
       location,
-      howToApply,
-      companyLogo,
-      type;
+      salary,
+      requirement;
+  // ,
+  // userUid
 
-  ProfessionConnectJobsDetails(
-      {this.imgUrl,
-      this.title,
-      this.desc,
-      // this.content,
-      this.posturl,
-      this.companyLogo,
-      this.companyName,
-      this.companyUrl,
-      this.howToApply,
-      this.location,
-      this.type});
+  ProfessionConnectJobsDetails({
+    this.companyName,
+    this.description,
+    this.location,
+    this.position,
+    this.requirement,
+    this.salary,
+    // this.userUid,
+  });
   @override
   _ProfessionConnectJobsDetailsState createState() =>
       _ProfessionConnectJobsDetailsState();
@@ -38,20 +32,20 @@ class _ProfessionConnectJobsDetailsState
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(
-          widget.companyName,
+          widget.companyName ?? 'default value',
         ),
         centerTitle: true,
       ),
       body: Center(
         child: ListView(
           children: <Widget>[
-            Image.network(
-              widget.companyLogo,
-              height: 150,
-            ),
+            // Image.network(
+            //   widget.companyLogo,
+            //   height: 150,
+            // ),
 
             Text(
-              "Join as " + widget.title,
+              "Join as " + widget.position ?? 'default value',
               style: new TextStyle(
                 fontSize: 25.0,
                 fontStyle: FontStyle.normal,
@@ -61,29 +55,29 @@ class _ProfessionConnectJobsDetailsState
               ),
               textAlign: TextAlign.center,
             ),
-            Text(
-              widget.type,
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.normal,
-                height: 2.5,
-                color: Colors.black,
-              ),
-              textAlign: TextAlign.center,
-            ),
             // Text(
-            //   widget.companyName,
-            //   style: new TextStyle(
-            //       fontSize: 25.0,
-            //       fontStyle: FontStyle.normal,
-            //       height: 2.5,
-            //       fontWeight: FontWeight.bold,
-            //       color: Colors.black),
+            //   widget.type,
+            //   style: TextStyle(
+            //     fontSize: 18.0,
+            //     fontWeight: FontWeight.bold,
+            //     fontStyle: FontStyle.normal,
+            //     height: 2.5,
+            //     color: Colors.black,
+            //   ),
             //   textAlign: TextAlign.center,
             // ),
             Text(
-              "Location:- " + widget.location,
+              widget.companyName ?? 'default value',
+              style: new TextStyle(
+                  fontSize: 25.0,
+                  fontStyle: FontStyle.normal,
+                  height: 2.5,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              "Location:- " + widget.location ?? 'default value',
               style: new TextStyle(
                   fontSize: 18.0,
                   fontStyle: FontStyle.normal,
@@ -93,7 +87,7 @@ class _ProfessionConnectJobsDetailsState
               textAlign: TextAlign.center,
             ),
             Text(
-              widget.desc,
+              widget.description ?? 'default value',
               style: new TextStyle(
                   fontSize: 20.0,
                   fontStyle: FontStyle.normal,
