@@ -211,63 +211,16 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           bottom: MediaQuery.of(context).viewInsets.bottom),
                       child: Column(
                         children: [
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
+                          TextFormField(
+                            // The validator receives the text that the user has entered.
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
                           ),
                           TextField(),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                          Text(
-                            "UI to add jobs",
-                            style: TextStyle(fontSize: 50),
-                          ),
                         ],
                       ),
                     )));
