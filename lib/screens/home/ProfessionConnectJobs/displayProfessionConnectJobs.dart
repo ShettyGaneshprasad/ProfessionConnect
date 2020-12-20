@@ -43,7 +43,7 @@ class _DisplayProfessionConnectJobs
 
 //  itemCount: professionConnectJob.length,
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         body: professionConnectJob != null
             ? ListView.builder(
                 itemCount: professionConnectJob.length,
