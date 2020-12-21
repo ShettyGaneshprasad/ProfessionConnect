@@ -1,5 +1,5 @@
 import 'package:ProfessionConnect/models/user.dart';
-import 'package:ProfessionConnect/screens/home/ProfessionConnectJobs/displayProfessionConnectJobs.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/aboutDeveloper/aboutDeveloper.dart';
 
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 import 'package:ProfessionConnect/screens/home/githubJobs/gihubJobsScreen.dart';
@@ -34,6 +34,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    print(
+        "init state of home page\n\n\n\n\n\n\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\#####");
     getNews();
     super.initState();
     _menuController = MenuController(vsync: this);
@@ -101,17 +103,17 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       child: new Scaffold(
         appBar: buildAppBar(),
         body: _page == 0
-            ? DisplayProfessionConnectJobs()
+            ? buildPage(0)
             : _page == 1
                 ? buildPage(1)
                 : _page == 2
-                    ? GithubJobScreen(
-                        githubJobsList: githubJobsList,
-                      )
+                    ? _loading
+                        ? Loading()
+                        : GithubJobScreen(
+                            githubJobsList: githubJobsList,
+                          )
                     : _page == 3
-                        ? _loading
-                            ? Loading()
-                            : buildPage(3)
+                        ? buildPage(3)
                         : _page == 3
                             ? buildPage(3)
                             : buildPage(4),
@@ -199,19 +201,52 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             // // getNews(), print("search pressed")
           },
         ),
-        IconButton(
-          icon: Icon(
-            Icons.notifications_none,
+        buildGestureDetector()
+      ],
+    );
+  }
+
+  GestureDetector buildGestureDetector() {
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+                    child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        // The validator receives the text that the user has entered.
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextField(),
+                    ],
+                  ),
+                )));
+      },
+      child: Row(
+        children: [
+          Center(child: Text("Add Job")),
+          SizedBox(
+            width: 10,
+          ),
+          Icon(
+            Icons.library_add,
             color: Colors.white,
           ),
-          onPressed: () {
-            //temporary for testing db update user
-            // db.updateUserData(
-            //     age: 22, email: userdata.email, name: 'Shetty Ganeshprasad',profession:'profession',title:'title');
-            // db.deleteJobData(jobId: 'gs');
-          },
-        ),
-      ],
+          SizedBox(
+            width: 5,
+          ),
+        ],
+      ),
     );
   }
 
@@ -342,6 +377,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     if (widgetId == 2) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => EditProfile()));
+    } else {
+      if (widgetId == 7) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AboutDeveloper()));
+      }
     }
   }
 
