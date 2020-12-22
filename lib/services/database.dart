@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ProfessionConnect/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
@@ -78,27 +80,30 @@ class DatabaseService {
   Future<void> updateJobData(
     String companyName,
     String position,
-    int salary,
+    String salary,
     String description,
+    String requirement,
   ) async {
     String newdescription = description ?? "description";
     String newposition = position ?? "position";
     String newcompanyName = companyName ?? "Companyname";
+    String newRequirement = requirement ?? "Requirement";
 
-    int newSalary = salary ?? 0;
+    String newSalary = salary ?? 'Salary';
     CollectionReference collectionReference =
-        Firestore.instance.collection('usersData');
-    collectionReference.document(user.uid).setData({
+        Firestore.instance.collection('jobListing');
+    collectionReference.document().setData({
       'companyName': newcompanyName,
       'position': newposition,
       'description': newdescription,
       'salary': newSalary,
+      'requirment': newRequirement,
       'useruid': user.uid
     });
   }
 
   //delete a job
-  Future<void> deleteJobData({String jobId}) {
+  void deleteJobData({String jobId}) {
     CollectionReference collectionReference =
         Firestore.instance.collection('jobListing');
     collectionReference.document(jobId).delete();
