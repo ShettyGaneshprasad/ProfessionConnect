@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'package:toast/toast.dart';
 import 'package:ProfessionConnect/models/user.dart';
+import 'package:toast/toast.dart';
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/aboutDeveloper/aboutDeveloper.dart';
 
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
@@ -10,6 +13,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:load_toast/load_toast.dart';
 import 'package:provider/provider.dart';
 import 'package:ProfessionConnect/models/githubJobs.dart';
 import 'package:ProfessionConnect/services/database.dart';
@@ -27,6 +31,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   GlobalKey _bottomNavigationKey = GlobalKey();
   MenuController _menuController;
   Color mainColor = Color(0xff79fadb);
+  // for bottom sHeadElement final _formKey = GlobalKey<FormState>();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   /// ---------------------------
   /// inilizing controllers and state .
@@ -38,6 +46,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         "init state of home page\n\n\n\n\n\n\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\#####");
     getNews();
     super.initState();
+    hideLoadToastWithSuccess();
     _menuController = MenuController(vsync: this);
   }
 
@@ -58,6 +67,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   dispose() {
     super.dispose();
     _menuController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 
   double setHeightPercentage(percentage, context) {
@@ -210,27 +222,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (context) => SingleChildScrollView(
-                    child: Container(
-                  padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                      ),
-                      TextField(),
-                    ],
-                  ),
-                )));
+          backgroundColor: Colors.black,
+          context: context,
+          isScrollControlled: true,
+          builder: (context) => SingleChildScrollView(
+            child: Container(
+              decoration: new BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: new BorderRadius.only(
+                      topLeft: const Radius.circular(10.0),
+                      topRight: const Radius.circular(10.0))),
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: bottomsheetForAddingJob(),
+            ),
+          ),
+        );
       },
       child: Row(
         children: [
@@ -244,6 +251,166 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
           SizedBox(
             width: 5,
+          ),
+        ],
+      ),
+    );
+  }
+
+// bottom sheet for adding jobs in PC
+  Form bottomsheetForAddingJob() {
+    String companyName;
+    String position;
+    String salary;
+    String jobRequirement;
+    String jobDescription;
+
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Add job',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                decoration: TextDecoration.none,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              // controller: companyNameController,
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return 'Company name cannot be empty';
+                } else if (value.length < 4) {
+                  return ' Company name must be at least 4 characters long.';
+                }
+                companyName = value;
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: 'Eg: Bosch',
+                labelText: 'Company Name',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+              ),
+            ),
+          ),
+
+          // to add position
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return 'position cannot be empty';
+                } else if (value.length < 4) {
+                  return 'position must be at least 4 characters long.';
+                }
+                position = value;
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: 'Eg: Manager',
+                labelText: 'Position',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+              ),
+            ),
+          ),
+
+          //to add salary
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              validator: (String value) {
+                salary = value;
+                return null;
+              },
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+                hintText: 'Eg: 250000',
+                labelText: 'Salary',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+              ),
+            ),
+          ),
+
+          // add job requriments
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return 'Requirements cannot be empty';
+                } else if (value.length < 4) {
+                  return 'Requirements must be at least 4 characters long.';
+                }
+                jobRequirement = value;
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: 'Eg: Communication skill, Programming knowledge',
+                labelText: 'Job Requirment',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return 'Desc cannot be empty';
+                } else if (value.length < 20) {
+                  return 'Desc must be at least 20 characters long.';
+                }
+                jobDescription = value;
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText:
+                    'Eg: A enginner with knowledge of microcontroller and hands on experience with programming',
+                labelText: 'Job Description',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+              ),
+            ),
+          ),
+
+          FloatingActionButton(
+            child: Icon(Icons.playlist_add_check),
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                debugPrint('All validations passed!!!');
+
+                try {
+                  final userdata = Provider.of<User>(context, listen: false);
+                  DatabaseService db = DatabaseService(user: userdata);
+                  db.updateJobData(companyName, position, salary,
+                      jobDescription, jobRequirement);
+                } on Exception catch (_) {
+                  Toast.show("Error in adding Job", context,
+                      duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                  debugPrint('error');
+                }
+                Toast.show("Added Job Sucessfuly", context,
+                    duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                debugPrint('sucess');
+                Navigator.pop(context);
+              } else {
+                Toast.show("Error in adding Job", context,
+                    duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+              }
+            },
           ),
         ],
       ),
@@ -587,6 +754,7 @@ class _ResideMenuState extends State<ResideMenu>
     _scrollState.addListener(() {
       setState(() {});
     });
+
     super.initState();
   }
 
