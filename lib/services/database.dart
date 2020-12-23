@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:ProfessionConnect/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
 
 class DatabaseService {
   User user;
@@ -79,6 +76,7 @@ class DatabaseService {
 // to add a new job
   Future<void> updateJobData(
     String companyName,
+    String location,
     String position,
     String salary,
     String description,
@@ -88,6 +86,7 @@ class DatabaseService {
     String newposition = position ?? "position";
     String newcompanyName = companyName ?? "Companyname";
     String newRequirement = requirement ?? "Requirement";
+    String newLocation = location ?? "Location";
 
     String newSalary = salary ?? 'Salary';
     CollectionReference collectionReference =
@@ -96,6 +95,7 @@ class DatabaseService {
       'companyName': newcompanyName,
       'position': newposition,
       'description': newdescription,
+      'location': newLocation,
       'salary': newSalary,
       'requirment': newRequirement,
       'useruid': user.uid
