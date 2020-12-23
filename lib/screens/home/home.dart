@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ProfessionConnect/screens/home/ProfessionConnectJobs/displayProfessionConnectJobs.dart';
 import 'package:toast/toast.dart';
 import 'package:ProfessionConnect/models/user.dart';
 import 'package:toast/toast.dart';
@@ -46,7 +47,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         "init state of home page\n\n\n\n\n\n\n\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\#####");
     getNews();
     super.initState();
-    hideLoadToastWithSuccess();
+
     _menuController = MenuController(vsync: this);
   }
 
@@ -115,7 +116,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       child: new Scaffold(
         appBar: buildAppBar(),
         body: _page == 0
-            ? buildPage(0)
+            ? DisplayProfessionConnectJobs()
             : _page == 1
                 ? buildPage(1)
                 : _page == 2
@@ -261,6 +262,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Form bottomsheetForAddingJob() {
     String companyName;
     String position;
+    String location;
     String salary;
     String jobRequirement;
     String jobDescription;
@@ -323,7 +325,26 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
             ),
           ),
-
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              validator: (String value) {
+                if (value.isEmpty) {
+                  return 'Location cannot be empty';
+                } else if (value.length < 4) {
+                  return 'Location must be at least 4 characters long.';
+                }
+                location = value;
+                return null;
+              },
+              decoration: InputDecoration(
+                hintText: 'Eg: Mumbai',
+                labelText: 'Location',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+              ),
+            ),
+          ),
           //to add salary
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -395,20 +416,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 try {
                   final userdata = Provider.of<User>(context, listen: false);
                   DatabaseService db = DatabaseService(user: userdata);
-                  db.updateJobData(companyName, position, salary,
+                  db.updateJobData(companyName, position, location, salary,
                       jobDescription, jobRequirement);
                 } on Exception catch (_) {
                   Toast.show("Error in adding Job", context,
-                      duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                      duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                   debugPrint('error');
                 }
                 Toast.show("Added Job Sucessfuly", context,
-                    duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                    duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                 debugPrint('sucess');
                 Navigator.pop(context);
               } else {
                 Toast.show("Error in adding Job", context,
-                    duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                    duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
               }
             },
           ),
