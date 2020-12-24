@@ -3,8 +3,16 @@ class User {
   final String email;
   String name;
   String profession;
-  int age;
-  String title;
+  String age;
+  String phoneNo;
+  String about;
+  String location;
 
-  User({this.uid, this.email});
+  User(this.uid, this.email,
+      [this.about,
+      this.name,
+      this.phoneNo,
+      this.profession,
+      this.age,
+      this.location]);
 }
