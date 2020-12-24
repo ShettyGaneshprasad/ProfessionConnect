@@ -5,6 +5,7 @@ class DatabaseService {
   User user;
   String uid;
   String email;
+
   Map data;
 
   DatabaseService({
@@ -35,25 +36,33 @@ class DatabaseService {
   // }
 
 // use to update user data
-  Future<void> updateUserData(
-      {String email,
-      String name,
-      int age,
-      String profession,
-      String title}) async {
-    String newEmail = email ?? user.email;
+
+  Future<void> updateUserData({
+    String name,
+    String age,
+    String profession,
+    String location,
+    String phoneNo,
+    String about,
+  }) async {
+    String newEmail = user.email;
     String newName = name ?? user.name;
-    String newProfession = email ?? user.profession;
-    String newtitle = title ?? user.title;
-    int newAge = age ?? user.age;
+    String newProfession = profession ?? user.profession;
+    String newLocation = location ?? user.location;
+    String newPhoneNo = phoneNo ?? user.phoneNo;
+    String newAbout = about ?? user.about;
+    String newAge = age ?? user.age;
     CollectionReference collectionReference =
         Firestore.instance.collection('usersData');
+
     collectionReference.document(user.uid).setData({
       'email': newEmail,
       'name': newName,
       'profession': newProfession,
-      'title': newtitle,
       'age': newAge,
+      'location': newLocation,
+      'phoneNo': newPhoneNo,
+      'about': newAbout,
     });
   }
 
