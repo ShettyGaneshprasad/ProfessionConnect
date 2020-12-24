@@ -55,8 +55,8 @@ class AuthService {
       // await DatabaseService(uid: user.uid)
       //     .updateUserData('0', 'new crew member', 100);
 
-      await DatabaseService(uid: user.uid)
-          .updateUserData(age: 0, email: user.email, name: 'Null');
+      await DatabaseService.withuid(uid: user.uid)
+          .addDataDuringRegistration(email: user.email);
 
       return _userFromFirebaseUser(user);
     } catch (error) {

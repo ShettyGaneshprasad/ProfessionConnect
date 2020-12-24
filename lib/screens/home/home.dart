@@ -51,7 +51,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     double height = setHeightPercentage(100, context);
     final userdata = Provider.of<User>(context);
-    DatabaseService db = DatabaseService(uid: userdata.uid);
+    DatabaseService db = DatabaseService();
 
     /// ---------------------------
     /// Building Scaffold Reside Menu drawer .
