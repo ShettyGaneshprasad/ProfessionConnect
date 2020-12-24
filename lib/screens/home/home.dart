@@ -18,6 +18,7 @@ import 'package:load_toast/load_toast.dart';
 import 'package:provider/provider.dart';
 import 'package:ProfessionConnect/models/githubJobs.dart';
 import 'package:ProfessionConnect/services/database.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/profileView.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -83,6 +84,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     double height = setHeightPercentage(100, context);
+    final userdata = Provider.of<User>(context);
+    DatabaseService db = DatabaseService();
 
     /// ---------------------------
     /// Building Scaffold Reside Menu drawer .
@@ -564,7 +567,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     _menuController.closeMenu();
     if (widgetId == 2) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => EditProfile()));
+          context, MaterialPageRoute(builder: (context) => ViewProfile()));
     } else {
       if (widgetId == 7) {
         Navigator.push(

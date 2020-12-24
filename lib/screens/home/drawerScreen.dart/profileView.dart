@@ -5,17 +5,17 @@ import 'package:ProfessionConnect/models/user.dart';
 // import 'package:blogapp/Pages/HomePage.dart';
 // import 'package:blogapp/Screen/HomeScreen.dart';
 import 'package:ProfessionConnect/models/user.dart';
-import 'package:ProfessionConnect/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 
-class EditProfile extends StatefulWidget {
+class ViewProfile extends StatefulWidget {
   @override
-  _EditProfileState createState() => _EditProfileState();
+  _ViewProfileState createState() => _ViewProfileState();
 }
 
-class _EditProfileState extends State<EditProfile> {
+class _ViewProfileState extends State<ViewProfile> {
   //final networkHandler = NetworkHandler();
   bool circular = false;
   PickedFile _imageFile;
@@ -27,26 +27,17 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController _phoneno = TextEditingController();
   TextEditingController _about = TextEditingController();
   final ImagePicker _picker = ImagePicker();
-
-  String newName;
-  String newProfession;
-  String newLocation;
-  String newAge;
-  String newPhno;
-  String newAbout;
-
   @override
   Widget build(BuildContext context) {
     User userdata = Provider.of<User>(context);
-    DatabaseService db = DatabaseService(user: userdata);
     return Scaffold(
       appBar: AppBar(
         elevation: 10.0,
         centerTitle: true,
-        backgroundColor: Color(0xff79fadb),
+        backgroundColor: Colors.green[400],
         leading: new GestureDetector(
           child: Container(
-            color: Color(0xff79fadb),
+            color: Colors.green[400],
             child: const Icon(
               Icons.arrow_back,
               color: Colors.black,
@@ -61,54 +52,23 @@ class _EditProfileState extends State<EditProfile> {
           style: TextStyle(color: Colors.black),
         ),
         actions: <Widget>[
-          // IconButton(
-          //   icon: Icon(
-          //     Icons.mode_edit,
-          //     color: Colors.black,
-          //   ),
-          //   onPressed: () => {},
-          // ),
           IconButton(
             icon: Icon(
-              Icons.save,
+              Icons.mode_edit,
               color: Colors.black,
             ),
-            onPressed: () {
-              newAbout = _about.text.toString();
-              newName = _name.text.toString();
-              newLocation = _location.text.toString();
-              newProfession = _profession.text.toString();
-              newAge = _age.text.toString();
-              newPhno = _phoneno.text.toString();
-              // print("test" + user.about);
-              userdata.about = newAbout;
-              userdata.age = newAge;
-              userdata.location = newLocation;
-              userdata.name = newName;
-              userdata.phoneNo = newPhno;
-              userdata.profession = newProfession;
-              User(
-                  userdata.uid,
-                  userdata.email,
-                  userdata.about,
-                  userdata.name,
-                  userdata.phoneNo,
-                  userdata.profession,
-                  userdata.age,
-                  userdata.location);
-              print("test" + userdata.about);
-              db.updateUserData(
-                age: newAge,
-                name: newName,
-                profession: newProfession,
-                location: newLocation,
-                about: newAbout,
-                phoneNo: newPhno,
-              );
-              Navigator.pop(context);
-              Navigator.pop(context);
+            onPressed: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EditProfile()))
             },
           ),
+          // IconButton(
+          //   icon: Icon(
+          //     Icons.save,
+          //     color: Colors.black,
+          //   ),
+          //   onPressed: () {},
+          // ),
         ],
       ),
       body: Form(
@@ -121,47 +81,107 @@ class _EditProfileState extends State<EditProfile> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             children: <Widget>[
               // imageProfile(),
-              // SizedBox(
-              //   height: 20,
-              // ),
               SizedBox(
                 height: 10,
               ),
               getHeaderText(),
+
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // getHeaderText(),
               SizedBox(
                 height: 20,
               ),
-              nameTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.name ?? "Name"),
+                  leading: Icon(
+                    Icons.person,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 20,
               ),
-              professionTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.profession ?? "Profession"),
+                  leading: Icon(
+                    Icons.work,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              // nameTextField(),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // professionTextField(),
               SizedBox(
                 height: 20,
               ),
-              locationTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.location ?? "Location"),
+                  leading: Icon(
+                    Icons.location_city,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              // locationTextField(),
               SizedBox(
                 height: 20,
               ),
-              ageField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.age ?? "Age"),
+                  leading: Icon(
+                    Icons.av_timer,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              // ageField(),
               SizedBox(
                 height: 20,
               ),
-              phonenoTextField(),
+              // phonenoTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.phoneNo ?? "Phone Number"),
+                  leading: Icon(
+                    Icons.call,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 20,
               ),
               // SizedBox(
               //   height: 20,
               // ),
-              aboutTextField(),
-              SizedBox(
-                height: 20,
-              ),
               // aboutTextField(),
               // SizedBox(
               //   height: 20,
               // ),
+              // aboutTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.about ??
+                      "About adfadsf adf adsf ads f asd f asdf ds af a df a df ad fa df a f ad fa dsf ad fa df a df ad fa df ad fa  dfdfdfd fdf df d f df djf jdfnkj jsbgij jdijf iha kjfnajdfjjaijdfnjnvjnetbnjn "),
+                  leading: Icon(
+                    Icons.call,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               // InkWell(
               //   onTap: () async {
               //     setState(() {
@@ -231,97 +251,97 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  Widget imageProfile() {
-    return Center(
-      child: Stack(children: <Widget>[
-        Container(
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: _imageFile == null
-                ? NetworkImage(
-                    'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-                  )
-                : FileImage(
-                    File(
-                      _imageFile.path,
-                    ),
-                  ),
-          ),
-        ),
-        Container(
-          child: Positioned(
-            bottom: 20.0,
-            right: 20.0,
-            child: InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: ((builder) => bottomSheet()),
-                );
-              },
-              child: Icon(
-                Icons.camera_alt,
-                color: Colors.teal,
-                size: 28.0,
-              ),
-            ),
-          ),
-        ),
-      ]),
-    );
-  }
+  // Widget imageProfile() {
+  //   return Center(
+  //     child: Stack(children: <Widget>[
+  //       Container(
+  //         child: CircleAvatar(
+  //           radius: 80.0,
+  //           backgroundImage: _imageFile == null
+  //               ? NetworkImage(
+  //                   'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
+  //                 )
+  //               : FileImage(
+  //                   File(
+  //                     _imageFile.path,
+  //                   ),
+  //                 ),
+  //         ),
+  //       ),
+  //       Container(
+  //         child: Positioned(
+  //           bottom: 20.0,
+  //           right: 20.0,
+  //           child: InkWell(
+  //             onTap: () {
+  //               showModalBottomSheet(
+  //                 context: context,
+  //                 builder: ((builder) => bottomSheet()),
+  //               );
+  //             },
+  //             // child: Icon(
+  //             //   Icons.camera_alt,
+  //             //   color: Colors.teal,
+  //             //   size: 28.0,
+  //             // ),
+  //           ),
+  //         ),
+  //       ),
+  //     ]),
+  //   );
+  // }
 
-  Widget bottomSheet() {
-    return Container(
-      height: 100.0,
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
-      ),
-      child: Column(
-        children: <Widget>[
-          Text(
-            "Choose Profile photo",
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.camera),
-              onPressed: () {
-                takePhoto(ImageSource.camera);
-              },
-              label: Text("Camera"),
-            ),
-            FlatButton.icon(
-              icon: Icon(Icons.image),
-              onPressed: () {
-                takePhoto(ImageSource.gallery);
-              },
-              label: Text("Gallery"),
-            ),
-          ])
-        ],
-      ),
-    );
-  }
+  // Widget bottomSheet() {
+  //   return Container(
+  //     height: 100.0,
+  //     width: MediaQuery.of(context).size.width,
+  //     margin: EdgeInsets.symmetric(
+  //       horizontal: 20,
+  //       vertical: 20,
+  //     ),
+  //     child: Column(
+  //       children: <Widget>[
+  //         Text(
+  //           "Choose Profile photo",
+  //           style: TextStyle(
+  //             fontSize: 20.0,
+  //           ),
+  //         ),
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+  //           FlatButton.icon(
+  //             icon: Icon(Icons.camera),
+  //             onPressed: () {
+  //               takePhoto(ImageSource.camera);
+  //             },
+  //             label: Text("Camera"),
+  //           ),
+  //           FlatButton.icon(
+  //             icon: Icon(Icons.image),
+  //             onPressed: () {
+  //               takePhoto(ImageSource.gallery);
+  //             },
+  //             label: Text("Gallery"),
+  //           ),
+  //         ])
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  void takePhoto(ImageSource source) async {
-    final pickedFile = await _picker.getImage(
-      source: source,
-    );
-    setState(() {
-      _imageFile = pickedFile ??
-          NetworkImage(
-            'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-          );
-    });
-  }
+  // void takePhoto(ImageSource source) async {
+  //   final pickedFile = await _picker.getImage(
+  //     source: source,
+  //   );
+  //   setState(() {
+  //     _imageFile = pickedFile ??
+  //         NetworkImage(
+  //           'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
+  //         );
+  //   });
+  // }
 
   getHeaderText() {
     final userdata = Provider.of<User>(context);
@@ -338,8 +358,9 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   Widget nameTextField() {
-    final userdata = Provider.of<User>(context);
+    User userdata = Provider.of<User>(context);
     return TextFormField(
+      enabled: false,
       controller: _name,
       validator: (value) {
         if (value.isEmpty) return "Name can't be empty";
@@ -362,15 +383,14 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: userdata.name ?? "Name",
+        labelText: "Name:",
         helperText: "Name can't be empty",
-        hintText: userdata.name ?? "Name",
+        hintText: "Dev Stack",
       ),
     );
   }
 
   Widget professionTextField() {
-    final userdata = Provider.of<User>(context);
     return TextFormField(
       controller: _profession,
       validator: (value) {
@@ -392,19 +412,15 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: userdata.profession ?? "Profession",
+        labelText: "Profession",
         helperText: "Profession can't be empty",
-        hintText: userdata.profession ?? "Profession",
+        hintText: "Full Stack Developer",
       ),
     );
   }
 
   Widget locationTextField() {
-    final userdata = Provider.of<User>(context);
     return TextFormField(
-      onChanged: (value) {
-        print(value);
-      },
       controller: _location,
       validator: (value) {
         if (value.isEmpty) return "Location can't be empty";
@@ -425,15 +441,17 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: userdata.location ?? "Location",
-        helperText: "Provide your Location",
-        hintText: userdata.location ?? "Location",
+        labelText: "Profession",
+        helperText: "Profession can't be empty",
+        hintText: "Full Stack Developer",
       ),
     );
   }
 
+  // labelText: "Location",
+  //       helperText: "Provide your Location",
+  //       hintText: "Dharwad",
   Widget ageField() {
-    final userdata = Provider.of<User>(context);
     return TextFormField(
       onChanged: (value) {
         print(value);
@@ -458,15 +476,14 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: userdata.age ?? "Age",
+        labelText: "Age",
         helperText: "Provide your age",
-        hintText: userdata.age ?? "Age",
+        hintText: "20 or 30",
       ),
     );
   }
 
   Widget phonenoTextField() {
-    final userdata = Provider.of<User>(context);
     return TextFormField(
       controller: _phoneno,
       validator: (value) {
@@ -475,27 +492,27 @@ class _EditProfileState extends State<EditProfile> {
         return null;
       },
       decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.teal,
-          )),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.orange,
-            width: 2,
-          )),
-          prefixIcon: Icon(
-            Icons.person,
-            color: Colors.green,
-          ),
-          labelText: userdata.phoneNo ?? "Phone Number",
-          helperText: "It can't be empty",
-          hintText: userdata.phoneNo ?? "Phone Number"),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.teal,
+        )),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+          color: Colors.orange,
+          width: 2,
+        )),
+        prefixIcon: Icon(
+          Icons.person,
+          color: Colors.green,
+        ),
+        labelText: "Phone Number",
+        helperText: "It can't be empty",
+        hintText: "9876543210",
+      ),
     );
   }
 
   Widget aboutTextField() {
-    final userdata = Provider.of<User>(context);
     return TextFormField(
       controller: _about,
       validator: (value) {
@@ -514,9 +531,9 @@ class _EditProfileState extends State<EditProfile> {
           color: Colors.orange,
           width: 2,
         )),
-        labelText: userdata.about ?? "About",
+        labelText: "About",
         helperText: "Write about yourself",
-        hintText: userdata.about ?? "About",
+        hintText: "I am Dev Stack",
       ),
     );
   }
