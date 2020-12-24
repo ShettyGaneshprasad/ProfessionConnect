@@ -8,13 +8,14 @@ import 'package:ProfessionConnect/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 
-class EditProfile extends StatefulWidget {
+class ViewProfile extends StatefulWidget {
   @override
-  _EditProfileState createState() => _EditProfileState();
+  _ViewProfileState createState() => _ViewProfileState();
 }
 
-class _EditProfileState extends State<EditProfile> {
+class _ViewProfileState extends State<ViewProfile> {
   //final networkHandler = NetworkHandler();
   bool circular = false;
   PickedFile _imageFile;
@@ -32,10 +33,10 @@ class _EditProfileState extends State<EditProfile> {
       appBar: AppBar(
         elevation: 10.0,
         centerTitle: true,
-        backgroundColor: Color(0xff79fadb),
+        backgroundColor: Colors.green[400],
         leading: new GestureDetector(
           child: Container(
-            color: Color(0xff79fadb),
+            color: Colors.green[400],
             child: const Icon(
               Icons.arrow_back,
               color: Colors.black,
@@ -50,20 +51,23 @@ class _EditProfileState extends State<EditProfile> {
           style: TextStyle(color: Colors.black),
         ),
         actions: <Widget>[
-          // IconButton(
-          //   icon: Icon(
-          //     Icons.mode_edit,
-          //     color: Colors.black,
-          //   ),
-          //   onPressed: () => {},
-          // ),
           IconButton(
             icon: Icon(
-              Icons.save,
+              Icons.mode_edit,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EditProfile()))
+            },
           ),
+          // IconButton(
+          //   icon: Icon(
+          //     Icons.save,
+          //     color: Colors.black,
+          //   ),
+          //   onPressed: () {},
+          // ),
         ],
       ),
       body: Form(
@@ -76,13 +80,14 @@ class _EditProfileState extends State<EditProfile> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             children: <Widget>[
               // imageProfile(),
-              // SizedBox(
-              //   height: 20,
-              // ),
               SizedBox(
                 height: 10,
               ),
               getHeaderText(),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // getHeaderText(),
               SizedBox(
                 height: 20,
               ),
@@ -214,11 +219,11 @@ class _EditProfileState extends State<EditProfile> {
                   builder: ((builder) => bottomSheet()),
                 );
               },
-              child: Icon(
-                Icons.camera_alt,
-                color: Colors.teal,
-                size: 28.0,
-              ),
+              // child: Icon(
+              //   Icons.camera_alt,
+              //   color: Colors.teal,
+              //   size: 28.0,
+              // ),
             ),
           ),
         ),

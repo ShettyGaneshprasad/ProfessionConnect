@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ProfessionConnect/services/database.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/profileView.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -315,7 +316,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     _menuController.closeMenu();
     if (widgetId == 2) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => EditProfile()));
+          context, MaterialPageRoute(builder: (context) => ViewProfile()));
     }
   }
 
