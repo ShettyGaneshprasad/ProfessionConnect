@@ -29,6 +29,7 @@ class _ViewProfileState extends State<ViewProfile> {
   final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
+    User userdata = Provider.of<User>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 10.0,
@@ -84,6 +85,7 @@ class _ViewProfileState extends State<ViewProfile> {
                 height: 10,
               ),
               getHeaderText(),
+
               // SizedBox(
               //   height: 20,
               // ),
@@ -91,37 +93,95 @@ class _ViewProfileState extends State<ViewProfile> {
               SizedBox(
                 height: 20,
               ),
-              nameTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.name ?? "Name"),
+                  leading: Icon(
+                    Icons.person,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 20,
               ),
-              professionTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.profession ?? "Profession"),
+                  leading: Icon(
+                    Icons.work,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              // nameTextField(),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // professionTextField(),
               SizedBox(
                 height: 20,
               ),
-              locationTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.location ?? "Location"),
+                  leading: Icon(
+                    Icons.location_city,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              // locationTextField(),
               SizedBox(
                 height: 20,
               ),
-              ageField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.age ?? "Age"),
+                  leading: Icon(
+                    Icons.av_timer,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              // ageField(),
               SizedBox(
                 height: 20,
               ),
-              phonenoTextField(),
+              // phonenoTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.phoneNo ?? "Phone Number"),
+                  leading: Icon(
+                    Icons.call,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 20,
               ),
               // SizedBox(
               //   height: 20,
               // ),
-              aboutTextField(),
-              SizedBox(
-                height: 20,
-              ),
               // aboutTextField(),
               // SizedBox(
               //   height: 20,
               // ),
+              // aboutTextField(),
+              Card(
+                child: ListTile(
+                  title: Text(userdata.about ??
+                      "About adfadsf adf adsf ads f asd f asdf ds af a df a df ad fa df a f ad fa dsf ad fa df a df ad fa df ad fa  dfdfdfd fdf df d f df djf jdfnkj jsbgij jdijf iha kjfnajdfjjaijdfnjnvjnetbnjn "),
+                  leading: Icon(
+                    Icons.call,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               // InkWell(
               //   onTap: () async {
               //     setState(() {
@@ -191,97 +251,97 @@ class _ViewProfileState extends State<ViewProfile> {
     );
   }
 
-  Widget imageProfile() {
-    return Center(
-      child: Stack(children: <Widget>[
-        Container(
-          child: CircleAvatar(
-            radius: 80.0,
-            backgroundImage: _imageFile == null
-                ? NetworkImage(
-                    'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-                  )
-                : FileImage(
-                    File(
-                      _imageFile.path,
-                    ),
-                  ),
-          ),
-        ),
-        Container(
-          child: Positioned(
-            bottom: 20.0,
-            right: 20.0,
-            child: InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: ((builder) => bottomSheet()),
-                );
-              },
-              // child: Icon(
-              //   Icons.camera_alt,
-              //   color: Colors.teal,
-              //   size: 28.0,
-              // ),
-            ),
-          ),
-        ),
-      ]),
-    );
-  }
+  // Widget imageProfile() {
+  //   return Center(
+  //     child: Stack(children: <Widget>[
+  //       Container(
+  //         child: CircleAvatar(
+  //           radius: 80.0,
+  //           backgroundImage: _imageFile == null
+  //               ? NetworkImage(
+  //                   'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
+  //                 )
+  //               : FileImage(
+  //                   File(
+  //                     _imageFile.path,
+  //                   ),
+  //                 ),
+  //         ),
+  //       ),
+  //       Container(
+  //         child: Positioned(
+  //           bottom: 20.0,
+  //           right: 20.0,
+  //           child: InkWell(
+  //             onTap: () {
+  //               showModalBottomSheet(
+  //                 context: context,
+  //                 builder: ((builder) => bottomSheet()),
+  //               );
+  //             },
+  //             // child: Icon(
+  //             //   Icons.camera_alt,
+  //             //   color: Colors.teal,
+  //             //   size: 28.0,
+  //             // ),
+  //           ),
+  //         ),
+  //       ),
+  //     ]),
+  //   );
+  // }
 
-  Widget bottomSheet() {
-    return Container(
-      height: 100.0,
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 20,
-      ),
-      child: Column(
-        children: <Widget>[
-          Text(
-            "Choose Profile photo",
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.camera),
-              onPressed: () {
-                takePhoto(ImageSource.camera);
-              },
-              label: Text("Camera"),
-            ),
-            FlatButton.icon(
-              icon: Icon(Icons.image),
-              onPressed: () {
-                takePhoto(ImageSource.gallery);
-              },
-              label: Text("Gallery"),
-            ),
-          ])
-        ],
-      ),
-    );
-  }
+  // Widget bottomSheet() {
+  //   return Container(
+  //     height: 100.0,
+  //     width: MediaQuery.of(context).size.width,
+  //     margin: EdgeInsets.symmetric(
+  //       horizontal: 20,
+  //       vertical: 20,
+  //     ),
+  //     child: Column(
+  //       children: <Widget>[
+  //         Text(
+  //           "Choose Profile photo",
+  //           style: TextStyle(
+  //             fontSize: 20.0,
+  //           ),
+  //         ),
+  //         SizedBox(
+  //           height: 20,
+  //         ),
+  //         Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+  //           FlatButton.icon(
+  //             icon: Icon(Icons.camera),
+  //             onPressed: () {
+  //               takePhoto(ImageSource.camera);
+  //             },
+  //             label: Text("Camera"),
+  //           ),
+  //           FlatButton.icon(
+  //             icon: Icon(Icons.image),
+  //             onPressed: () {
+  //               takePhoto(ImageSource.gallery);
+  //             },
+  //             label: Text("Gallery"),
+  //           ),
+  //         ])
+  //       ],
+  //     ),
+  //   );
+  // }
 
-  void takePhoto(ImageSource source) async {
-    final pickedFile = await _picker.getImage(
-      source: source,
-    );
-    setState(() {
-      _imageFile = pickedFile ??
-          NetworkImage(
-            'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
-          );
-    });
-  }
+  // void takePhoto(ImageSource source) async {
+  //   final pickedFile = await _picker.getImage(
+  //     source: source,
+  //   );
+  //   setState(() {
+  //     _imageFile = pickedFile ??
+  //         NetworkImage(
+  //           'https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg',
+  //         );
+  //   });
+  // }
 
   getHeaderText() {
     final userdata = Provider.of<User>(context);
@@ -298,7 +358,9 @@ class _ViewProfileState extends State<ViewProfile> {
   }
 
   Widget nameTextField() {
+    User userdata = Provider.of<User>(context);
     return TextFormField(
+      enabled: false,
       controller: _name,
       validator: (value) {
         if (value.isEmpty) return "Name can't be empty";
@@ -321,7 +383,7 @@ class _ViewProfileState extends State<ViewProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: "Name",
+        labelText: "Name:",
         helperText: "Name can't be empty",
         hintText: "Dev Stack",
       ),
@@ -359,10 +421,7 @@ class _ViewProfileState extends State<ViewProfile> {
 
   Widget locationTextField() {
     return TextFormField(
-      onChanged: (value) {
-        print(value);
-      },
-      controller: _age,
+      controller: _location,
       validator: (value) {
         if (value.isEmpty) return "Location can't be empty";
 
@@ -382,13 +441,16 @@ class _ViewProfileState extends State<ViewProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: "Location",
-        helperText: "Provide your Location",
-        hintText: "Dharwad",
+        labelText: "Profession",
+        helperText: "Profession can't be empty",
+        hintText: "Full Stack Developer",
       ),
     );
   }
 
+  // labelText: "Location",
+  //       helperText: "Provide your Location",
+  //       hintText: "Dharwad",
   Widget ageField() {
     return TextFormField(
       onChanged: (value) {

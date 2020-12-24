@@ -5,6 +5,7 @@ import 'package:ProfessionConnect/models/user.dart';
 // import 'package:blogapp/Pages/HomePage.dart';
 // import 'package:blogapp/Screen/HomeScreen.dart';
 import 'package:ProfessionConnect/models/user.dart';
+import 'package:ProfessionConnect/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -26,8 +27,18 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController _phoneno = TextEditingController();
   TextEditingController _about = TextEditingController();
   final ImagePicker _picker = ImagePicker();
+
+  String newName;
+  String newProfession;
+  String newLocation;
+  String newAge;
+  String newPhno;
+  String newAbout;
+
   @override
   Widget build(BuildContext context) {
+    User userdata = Provider.of<User>(context);
+    DatabaseService db = DatabaseService(user: userdata);
     return Scaffold(
       appBar: AppBar(
         elevation: 10.0,
@@ -62,7 +73,41 @@ class _EditProfileState extends State<EditProfile> {
               Icons.save,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              newAbout = _about.text.toString();
+              newName = _name.text.toString();
+              newLocation = _location.text.toString();
+              newProfession = _profession.text.toString();
+              newAge = _age.text.toString();
+              newPhno = _phoneno.text.toString();
+              // print("test" + user.about);
+              userdata.about = newAbout;
+              userdata.age = newAge;
+              userdata.location = newLocation;
+              userdata.name = newName;
+              userdata.phoneNo = newPhno;
+              userdata.profession = newProfession;
+              User(
+                  userdata.uid,
+                  userdata.email,
+                  userdata.about,
+                  userdata.name,
+                  userdata.phoneNo,
+                  userdata.profession,
+                  userdata.age,
+                  userdata.location);
+              print("test" + userdata.about);
+              db.updateUserData(
+                age: newAge,
+                name: newName,
+                profession: newProfession,
+                location: newLocation,
+                about: newAbout,
+                phoneNo: newPhno,
+              );
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
@@ -293,6 +338,7 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   Widget nameTextField() {
+    final userdata = Provider.of<User>(context);
     return TextFormField(
       controller: _name,
       validator: (value) {
@@ -316,14 +362,15 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: "Name",
+        labelText: userdata.name ?? "Name",
         helperText: "Name can't be empty",
-        hintText: "Dev Stack",
+        hintText: userdata.name ?? "Name",
       ),
     );
   }
 
   Widget professionTextField() {
+    final userdata = Provider.of<User>(context);
     return TextFormField(
       controller: _profession,
       validator: (value) {
@@ -345,19 +392,20 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: "Profession",
+        labelText: userdata.profession ?? "Profession",
         helperText: "Profession can't be empty",
-        hintText: "Full Stack Developer",
+        hintText: userdata.profession ?? "Profession",
       ),
     );
   }
 
   Widget locationTextField() {
+    final userdata = Provider.of<User>(context);
     return TextFormField(
       onChanged: (value) {
         print(value);
       },
-      controller: _age,
+      controller: _location,
       validator: (value) {
         if (value.isEmpty) return "Location can't be empty";
 
@@ -377,14 +425,15 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: "Location",
+        labelText: userdata.location ?? "Location",
         helperText: "Provide your Location",
-        hintText: "Dharwad",
+        hintText: userdata.location ?? "Location",
       ),
     );
   }
 
   Widget ageField() {
+    final userdata = Provider.of<User>(context);
     return TextFormField(
       onChanged: (value) {
         print(value);
@@ -409,14 +458,15 @@ class _EditProfileState extends State<EditProfile> {
           Icons.person,
           color: Colors.green,
         ),
-        labelText: "Age",
+        labelText: userdata.age ?? "Age",
         helperText: "Provide your age",
-        hintText: "20 or 30",
+        hintText: userdata.age ?? "Age",
       ),
     );
   }
 
   Widget phonenoTextField() {
+    final userdata = Provider.of<User>(context);
     return TextFormField(
       controller: _phoneno,
       validator: (value) {
@@ -425,27 +475,27 @@ class _EditProfileState extends State<EditProfile> {
         return null;
       },
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-            borderSide: BorderSide(
-          color: Colors.teal,
-        )),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-          color: Colors.orange,
-          width: 2,
-        )),
-        prefixIcon: Icon(
-          Icons.person,
-          color: Colors.green,
-        ),
-        labelText: "Phone Number",
-        helperText: "It can't be empty",
-        hintText: "9876543210",
-      ),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.teal,
+          )),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.orange,
+            width: 2,
+          )),
+          prefixIcon: Icon(
+            Icons.person,
+            color: Colors.green,
+          ),
+          labelText: userdata.phoneNo ?? "Phone Number",
+          helperText: "It can't be empty",
+          hintText: userdata.phoneNo ?? "Phone Number"),
     );
   }
 
   Widget aboutTextField() {
+    final userdata = Provider.of<User>(context);
     return TextFormField(
       controller: _about,
       validator: (value) {
@@ -464,9 +514,9 @@ class _EditProfileState extends State<EditProfile> {
           color: Colors.orange,
           width: 2,
         )),
-        labelText: "About",
+        labelText: userdata.about ?? "About",
         helperText: "Write about yourself",
-        hintText: "I am Dev Stack",
+        hintText: userdata.about ?? "About",
       ),
     );
   }
