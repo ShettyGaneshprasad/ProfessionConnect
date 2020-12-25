@@ -8,10 +8,13 @@ class Chinfye extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff79fadb),
+      backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
           Image.asset('assets/ChinmayeeJoshi.jpg'),
+          SizedBox(
+            height: 20,
+          ),
           Text(
             "Chinmayee Joshi",
             style: new TextStyle(

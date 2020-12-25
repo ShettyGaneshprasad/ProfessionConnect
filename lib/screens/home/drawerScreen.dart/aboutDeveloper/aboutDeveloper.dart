@@ -33,7 +33,7 @@ class MyTabsState extends State<AboutDeveloper>
         length: 4,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Color(0xff2FD159),
             title: Text("About Developer"),
             bottom: menu(),
           ),
@@ -54,7 +54,7 @@ class MyTabsState extends State<AboutDeveloper>
             "Ganesh Shetty",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xff79fadb),
+              color: Colors.black,
             ),
           )),
           icon: Icon(Icons.code),
@@ -64,7 +64,7 @@ class MyTabsState extends State<AboutDeveloper>
               child: Text(
             "Shubham Kumar",
             style: TextStyle(
-              color: Color(0xff79fadb),
+              color: Colors.black,
             ),
             textAlign: TextAlign.center,
           )),
@@ -75,7 +75,7 @@ class MyTabsState extends State<AboutDeveloper>
               child: Text(
             "Chinmayee",
             style: TextStyle(
-              color: Color(0xff79fadb),
+              color: Colors.black,
             ),
             textAlign: TextAlign.center,
           )),
@@ -86,7 +86,7 @@ class MyTabsState extends State<AboutDeveloper>
               child: Text(
             "Nikhita",
             style: TextStyle(
-              color: Color(0xff79fadb),
+              color: Colors.black,
             ),
             textAlign: TextAlign.center,
           )),
