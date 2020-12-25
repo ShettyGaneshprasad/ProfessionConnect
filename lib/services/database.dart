@@ -107,7 +107,7 @@ class DatabaseService {
       'location': newLocation,
       'salary': newSalary,
       'requirment': newRequirement,
-      'useruid': user.uid
+      'userUid': user.uid
     });
   }
 
