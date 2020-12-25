@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: LoadToast(
         child: MaterialApp(
+          theme: ThemeData(
+              // primaryColor: Color(0xff2FD159),
+              ),
           debugShowCheckedModeBanner: false,
           home: Wrapper(),
         ),
