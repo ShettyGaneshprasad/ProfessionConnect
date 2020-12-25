@@ -40,7 +40,7 @@ class _GithubJobScreenState extends State<GithubJobScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black,
+        color: Colors.white,
         child: Column(
           children: <Widget>[
             Expanded(
@@ -153,10 +153,11 @@ class JobTile extends StatelessWidget {
                     )));
       },
       child: Container(
-          color: Colors.black,
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Card(
+              elevation: 5,
               // color: mainColor,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

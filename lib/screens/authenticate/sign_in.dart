@@ -17,6 +17,7 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   String error = '';
   bool loading = false;
+  Color mainColor = Color(0xff2FD159);
 
   // text field state
   String email = '';
@@ -45,11 +46,8 @@ class _SignInState extends State<SignIn> {
                       // backgroundColor: Colors.black,
                       config: CustomConfig(
                         gradients: [
-                          [Colors.deepOrange, Colors.pinkAccent.shade200],
-                          [
-                            Colors.orangeAccent.shade200,
-                            Colors.pinkAccent.shade200
-                          ],
+                          [mainColor, Colors.white],
+                          [mainColor, Colors.white],
                         ],
                         durations: [19440, 10800],
                         heightPercentages: [0.20, 0.15],
@@ -110,11 +108,11 @@ class _SignInState extends State<SignIn> {
                                 decoration: InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.person,
-                                      color: Colors.deepOrange,
+                                      color: mainColor,
                                     ),
                                     suffixIcon: Icon(
                                       Icons.check_circle,
-                                      color: Colors.deepOrange,
+                                      color: mainColor,
                                     ),
                                     hintText: "email",
                                     hintStyle: TextStyle(color: Colors.black26),
@@ -151,7 +149,7 @@ class _SignInState extends State<SignIn> {
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.lock,
-                                    color: Colors.deepOrange,
+                                    color: mainColor,
                                   ),
                                   hintText: "Password",
                                   hintStyle: TextStyle(
@@ -178,7 +176,7 @@ class _SignInState extends State<SignIn> {
                               padding: EdgeInsets.all(30.0),
                               child: RaisedButton(
                                 padding: EdgeInsets.symmetric(vertical: 16.0),
-                                color: Colors.deepOrange,
+                                color: mainColor,
                                 onPressed: () async {
                                   if (_formKey.currentState.validate()) {
                                     setState(() => loading = true);

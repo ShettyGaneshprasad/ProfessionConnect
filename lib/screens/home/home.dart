@@ -1,24 +1,18 @@
-import 'dart:io';
 import 'package:ProfessionConnect/screens/home/ProfessionConnectJobs/displayProfessionConnectJobs.dart';
 import 'package:toast/toast.dart';
 import 'package:ProfessionConnect/models/user.dart';
-import 'package:toast/toast.dart';
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/aboutDeveloper/aboutDeveloper.dart';
-
-import 'package:ProfessionConnect/screens/home/drawerScreen.dart/editprofilePage.dart';
 import 'package:ProfessionConnect/screens/home/githubJobs/gihubJobsScreen.dart';
 import 'package:ProfessionConnect/services/auth.dart';
 import 'package:ProfessionConnect/services/githubJobs.dart';
 import 'package:ProfessionConnect/shared/loading.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:load_toast/load_toast.dart';
 import 'package:provider/provider.dart';
 import 'package:ProfessionConnect/models/githubJobs.dart';
 import 'package:ProfessionConnect/services/database.dart';
-import 'package:ProfessionConnect/screens/home/drawerScreen.dart/profileView.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/Profile/profileView.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -32,7 +26,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   int _page = 0;
   GlobalKey _bottomNavigationKey = GlobalKey();
   MenuController _menuController;
-  Color mainColor = Color(0xff79fadb);
+  Color mainColor = Color(0xff2FD159);
+  // Color mainColor = Colors.orangeAccent.shade200;
+  Color secondaryColor = Colors.white;
   // for bottom sHeadElement final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -101,8 +97,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           colors: <Color>[
             // Colors.yellow,
             // Color(0xFFFF3E4D),
-            Color(0xFFFE5572),
-            Color(0xFFFCAA44),
+            Color(0xff2FD159),
+            Colors.white,
           ],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
@@ -140,7 +136,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Container buildPage(int number) {
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       child: Center(
         child: Column(
           children: <Widget>[
@@ -163,15 +159,35 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       index: 0,
       height: 50.0,
       items: <Widget>[
-        Icon(Icons.home, size: 30),
-        Icon(Icons.favorite_border, size: 30),
-        Icon(Icons.supervised_user_circle, size: 30),
-        Icon(Icons.notifications_active, size: 30),
-        Icon(Icons.more_vert, size: 30),
+        Icon(
+          Icons.home,
+          size: 30,
+          color: secondaryColor,
+        ),
+        Icon(
+          Icons.favorite_border,
+          size: 30,
+          color: secondaryColor,
+        ),
+        Icon(
+          Icons.supervised_user_circle,
+          size: 30,
+          color: secondaryColor,
+        ),
+        Icon(
+          Icons.notifications_active,
+          size: 30,
+          color: secondaryColor,
+        ),
+        Icon(
+          Icons.more_vert,
+          size: 30,
+          color: secondaryColor,
+        ),
       ],
       color: mainColor,
       buttonBackgroundColor: mainColor,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       animationCurve: Curves.easeInOut,
       animationDuration: Duration(milliseconds: 600),
       onTap: (index) {
@@ -186,12 +202,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     // final userdata = Provider.of<User>(context);
     // DatabaseService db = DatabaseService(user:  userdata);
     return new AppBar(
-      elevation: 10.0,
+      elevation: 8.0,
       centerTitle: true,
-      backgroundColor: Colors.black,
+      backgroundColor: mainColor,
       leading: new GestureDetector(
         child: Container(
-          color: Colors.black,
+          color: mainColor,
           child: const Icon(
             Icons.menu,
             color: Colors.white,
@@ -203,20 +219,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       ),
       title: new Text(
         'Profession Connect',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       actions: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.search,
-            color: Colors.white,
-          ),
-          onPressed: () => {
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => GithubJobScreen()))
-            // // getNews(), print("search pressed")
-          },
-        ),
+        // IconButton(
+        //   icon: Icon(
+        //     Icons.search,
+        //     color: Colors.white,
+        //   ),
+        //   onPressed: () => {
+        //     // Navigator.push(context,
+        //     //     MaterialPageRoute(builder: (context) => GithubJobScreen()))
+        //     // // getNews(), print("search pressed")
+        //   },
+        // ),
         buildGestureDetector()
       ],
     );
@@ -226,7 +242,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.grey[600],
           context: context,
           isScrollControlled: true,
           builder: (context) => SingleChildScrollView(
@@ -234,8 +250,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               decoration: new BoxDecoration(
                   color: Colors.white,
                   borderRadius: new BorderRadius.only(
-                      topLeft: const Radius.circular(10.0),
-                      topRight: const Radius.circular(10.0))),
+                      topLeft: const Radius.circular(30.0),
+                      topRight: const Radius.circular(30.0))),
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
               child: bottomsheetForAddingJob(),
@@ -245,7 +261,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       },
       child: Row(
         children: [
-          Center(child: Text("Add Job")),
+          Center(
+              child: Text(
+            "Add Job",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          )),
           SizedBox(
             width: 10,
           ),
@@ -279,7 +302,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             child: Text(
               'Add job',
               style: TextStyle(
-                color: Colors.black,
+                color: Color(0xff2FD159),
+                fontWeight: FontWeight.bold,
                 fontSize: 25,
                 decoration: TextDecoration.none,
               ),
@@ -301,6 +325,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               decoration: InputDecoration(
                 hintText: 'Eg: Bosch',
                 labelText: 'Company Name',
+                labelStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
+                hintStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0)),
               ),
@@ -323,6 +353,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               decoration: InputDecoration(
                 hintText: 'Eg: Manager',
                 labelText: 'Position',
+                labelStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
+                hintStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0)),
               ),
@@ -343,6 +379,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               decoration: InputDecoration(
                 hintText: 'Eg: Mumbai',
                 labelText: 'Location',
+                labelStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
+                hintStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0)),
               ),
@@ -360,6 +402,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               decoration: InputDecoration(
                 hintText: 'Eg: 250000',
                 labelText: 'Salary',
+                labelStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
+                hintStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0)),
               ),
@@ -382,6 +430,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               decoration: InputDecoration(
                 hintText: 'Eg: Communication skill, Programming knowledge',
                 labelText: 'Job Requirment',
+                labelStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
+                hintStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0)),
               ),
@@ -404,6 +458,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 hintText:
                     'Eg: A enginner with knowledge of microcontroller and hands on experience with programming',
                 labelText: 'Job Description',
+                labelStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
+                hintStyle: TextStyle(
+                  color: Color(0xff2FD159),
+                ),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0)),
               ),
@@ -411,7 +471,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
 
           FloatingActionButton(
-            child: Icon(Icons.playlist_add_check),
+            backgroundColor: Color(0xff2FD159),
+            child: Icon(
+              Icons.playlist_add_check,
+            ),
             onPressed: () {
               if (_formKey.currentState.validate()) {
                 debugPrint('All validations passed!!!');
@@ -419,20 +482,21 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 try {
                   final userdata = Provider.of<User>(context, listen: false);
                   DatabaseService db = DatabaseService(user: userdata);
+
                   db.updateJobData(companyName, position, location, salary,
                       jobDescription, jobRequirement);
                 } on Exception catch (_) {
                   Toast.show("Error in adding Job", context,
-                      duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                      duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                   debugPrint('error');
                 }
                 Toast.show("Added Job Sucessfuly", context,
-                    duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                    duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                 debugPrint('sucess');
                 Navigator.pop(context);
               } else {
                 Toast.show("Error in adding Job", context,
-                    duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                    duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
               }
             },
           ),
@@ -499,7 +563,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ),
           Container(
             margin: new EdgeInsets.only(bottom: height * 0.122),
-            child: getMaterialResideMenuItemWithCustomColor(Colors.red, 8),
+            child: getMaterialResideMenuItemWithCustomColor(Colors.white, 8),
           ),
         ],
       ),
@@ -540,7 +604,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       Color drawerIconColor, int state) {
     final AuthService _auth = AuthService();
     String drawerMenuTitle = 'Log Out';
-    IconData drawerMenuIcon = Icons.ac_unit;
+    IconData drawerMenuIcon = Icons.power_settings_new;
     return new Material(
       color: Colors.transparent,
       child: new InkWell(

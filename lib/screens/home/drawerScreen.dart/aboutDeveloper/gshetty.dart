@@ -7,33 +7,39 @@ class GShetty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff79fadb),
+      backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
           Image.asset('assets/ganeshshetty.jpeg'),
+          SizedBox(
+            height: 20,
+          ),
           Text(
             "Shetty Ganeshprasad",
             style: new TextStyle(
-                fontSize: 30.0,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.w600,
-                color: Colors.black),
+              fontSize: 30.0,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
             textAlign: TextAlign.center,
           ),
           Text(
             "Computer Science Department, SDMCET",
             style: new TextStyle(
-                fontSize: 20.0,
-                fontStyle: FontStyle.normal,
-                color: Colors.black),
+              fontSize: 20.0,
+              fontStyle: FontStyle.normal,
+              color: Colors.black,
+            ),
             textAlign: TextAlign.center,
           ),
           Text(
             "Ph :7900129925\n",
             style: new TextStyle(
-                fontSize: 20.0,
-                fontStyle: FontStyle.normal,
-                color: Colors.black),
+              fontSize: 20.0,
+              fontStyle: FontStyle.normal,
+              color: Colors.black,
+            ),
             textAlign: TextAlign.center,
           ),
           Column(

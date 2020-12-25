@@ -8,12 +8,15 @@ class Nikhita extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff79fadb),
+      backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
           Image.asset(
             'assets/nikhita.jpg',
             fit: BoxFit.contain,
+          ),
+          SizedBox(
+            height: 20,
           ),
           Text(
             "Nikhita Muragod",

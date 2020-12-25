@@ -43,13 +43,14 @@ class _DisplayProfessionConnectJobs
 
 //  itemCount: professionConnectJob.length,
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         body: professionConnectJob != null
             ? ListView.builder(
                 itemCount: professionConnectJob.length,
                 shrinkWrap: true,
                 physics: ClampingScrollPhysics(),
                 itemBuilder: (context, index) {
+                  String jobId = professionConnectJob[index].documentID;
                   String position =
                       professionConnectJob[index].data['position'];
                   String companyName =
@@ -64,6 +65,7 @@ class _DisplayProfessionConnectJobs
                       professionConnectJob[index].data['location'];
 
                   return PCTile(
+                    jobId: jobId,
                     companyName: companyName,
                     description: description,
                     location: location,
@@ -84,8 +86,10 @@ class PCTile extends StatelessWidget {
       location,
       salary,
       requirement,
+      jobId,
       userUid;
   PCTile({
+    this.jobId,
     this.companyName,
     this.description,
     this.location,
@@ -103,21 +107,24 @@ class PCTile extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ProfessionConnectJobsDetails(
+              jobId: jobId,
               description: description,
               position: position,
               requirement: requirement,
               salary: salary,
               companyName: companyName,
               location: location,
+              userUid: userUid,
             ),
           ),
         );
       },
       child: Container(
-          color: Colors.black,
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Card(
+              elevation: 5,
               // color: mainColor,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

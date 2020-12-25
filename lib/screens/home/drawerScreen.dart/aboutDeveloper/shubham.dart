@@ -8,12 +8,15 @@ class Shubham extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff79fadb),
+      backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
           Image.asset(
             'assets/ShubhamKumar.jpg',
             fit: BoxFit.fill,
+          ),
+          SizedBox(
+            height: 20,
           ),
           Text(
             "Shubham Kumar",
