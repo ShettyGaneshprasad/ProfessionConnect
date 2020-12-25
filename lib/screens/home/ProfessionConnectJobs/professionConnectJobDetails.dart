@@ -1,4 +1,8 @@
+import 'package:ProfessionConnect/models/user.dart';
+import 'package:ProfessionConnect/services/database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 
 class ProfessionConnectJobsDetails extends StatefulWidget {
   final String position,
@@ -6,19 +10,21 @@ class ProfessionConnectJobsDetails extends StatefulWidget {
       companyName,
       location,
       salary,
-      requirement;
-  // ,
-  // userUid
+      requirement,
+      jobId,
+      userUid;
 
   ProfessionConnectJobsDetails({
+    this.jobId,
     this.companyName,
     this.description,
     this.location,
     this.position,
     this.requirement,
     this.salary,
-    // this.userUid,
+    this.userUid,
   });
+
   @override
   _ProfessionConnectJobsDetailsState createState() =>
       _ProfessionConnectJobsDetailsState();
@@ -26,15 +32,35 @@ class ProfessionConnectJobsDetails extends StatefulWidget {
 
 class _ProfessionConnectJobsDetailsState
     extends State<ProfessionConnectJobsDetails> {
+  Color mainColor = Color(0xff2FD159);
+
   @override
   Widget build(BuildContext context) {
+    // final currentUserId = Provider.of<User>(context).uid;
+    User userdata = Provider.of<User>(context);
+    DatabaseService db = DatabaseService(user: userdata);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: mainColor,
         title: Text(
           widget.companyName ?? 'default value',
         ),
         centerTitle: true,
+        actions: [
+          userdata.uid == widget.userUid
+              ? IconButton(
+                  icon: Icon(
+                    Icons.delete_forever,
+                  ),
+                  onPressed: () {
+                    db.deleteJobData(jobId: widget.jobId);
+                    Navigator.pop(context);
+                    Toast.show("Deleted your Job", context,
+                        duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                  },
+                )
+              : Container(),
+        ],
       ),
       body: Center(
         child: ListView(
