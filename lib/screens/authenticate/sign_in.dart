@@ -312,7 +312,7 @@ class _SignInState extends State<SignIn> {
                                 /// -----------------------------------------
                                 FlatButton(
                                   child: Text("Sign up"),
-                                  textColor: Colors.indigo,
+                                  textColor: mainColor,
                                   onPressed: () {
                                     widget.toggleView();
                                   },
