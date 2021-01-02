@@ -312,7 +312,7 @@ class _RegisterState extends State<Register> {
                                 /// FlatButton signUp .
                                 /// -----------------------------------------
                                 FlatButton(
-                                  child: Text("Sign up"),
+                                  child: Text("Sign in"),
                                   textColor: mainColor,
                                   onPressed: () => widget.toggleView(),
                                 )
