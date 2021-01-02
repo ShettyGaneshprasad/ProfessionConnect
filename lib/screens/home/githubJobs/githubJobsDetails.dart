@@ -30,11 +30,12 @@ class GithubJobsDetails extends StatefulWidget {
 }
 
 class _GithubJobsDetailsState extends State<GithubJobsDetails> {
+  Color mainColor = Color(0xff2FD159);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: mainColor,
         title: Text(
           widget.companyName,
         ),
