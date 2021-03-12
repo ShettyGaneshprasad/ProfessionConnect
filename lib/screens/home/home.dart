@@ -490,8 +490,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
                   debugPrint('error');
                 }
-                Toast.show("Added Job Sucessfuly", context,
-                    duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+                Toast.show(
+                    "Added Job Sucessfuly..\n Jobs will be available after ADMIN's approval",
+                    context,
+                    duration: Toast.LENGTH_LONG,
+                    gravity: Toast.CENTER);
                 debugPrint('sucess');
                 Navigator.pop(context);
               } else {
