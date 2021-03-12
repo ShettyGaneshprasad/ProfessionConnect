@@ -20,9 +20,8 @@ jobs:
           java-version: "12.x"
       - name: Set up Flutter
         uses: subosito/flutter-action@v1
-        with:
-        flutter-version: '1.22.5'
-          channel: "stable"
+          with:
+            flutter-version: '1.22.5'
       - name: Install pub Dependencies
         run: flutter pub get
       - name: Build Android App
