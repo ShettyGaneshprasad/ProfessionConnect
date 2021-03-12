@@ -99,7 +99,7 @@ class DatabaseService {
 
     String newSalary = salary ?? 'Salary';
     CollectionReference collectionReference =
-        Firestore.instance.collection('jobListing');
+        Firestore.instance.collection('jobsToBeApproved');
     collectionReference.document().setData({
       'companyName': newcompanyName,
       'position': newposition,

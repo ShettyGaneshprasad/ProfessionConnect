@@ -95,8 +95,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
         gradient: LinearGradient(
           colors: <Color>[
-            // Colors.yellow,
-            // Color(0xFFFF3E4D),
+            Colors.yellow,
+            Color(0xFFFF3E4D),
             Color(0xff2FD159),
             Colors.white,
           ],
