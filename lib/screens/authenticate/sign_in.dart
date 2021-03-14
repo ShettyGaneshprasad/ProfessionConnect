@@ -3,6 +3,7 @@ import 'package:ProfessionConnect/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
+import 'package:ProfessionConnect/screens/home/home.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -178,7 +179,6 @@ class _SignInState extends State<SignIn> {
                                 padding: EdgeInsets.symmetric(vertical: 16.0),
                                 color: mainColor,
                                 onPressed: () async {
-                                  
                                   if (_formKey.currentState.validate()) {
                                     setState(() => loading = true);
                                     dynamic result =
@@ -251,9 +251,7 @@ class _SignInState extends State<SignIn> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(40)),
                                     ),
-                                    onPressed: () {
-                                      print('google');
-                                    },
+                                    onPressed: () => _auth.gSignIn().whenComplete(() => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>Home())))
                                     // onPressed: ()
                                     //     //     googleSignIn().whenComplete(() {
                                     //     //   // FirebaseUser user =
@@ -267,10 +265,10 @@ class _SignInState extends State<SignIn> {
                                     //     async {
                                     //   signInWithGoogle()
                                     //       .then((FirebaseUser user) {
-                                    //     Navigator.of(context).pushReplacement(
-                                    //         MaterialPageRoute(
-                                    //             builder: (context) =>
-                                    //                 HomePage()));
+                                    //  Navigator.of(context).pushReplacement(
+                                    //      MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             HomePage()));
                                     //   }).catchError((e) => print(e));
                                     // },
                                   ),
