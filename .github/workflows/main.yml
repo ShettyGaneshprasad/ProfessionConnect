@@ -21,7 +21,7 @@ jobs:
         uses: subosito/flutter-action@v1
       - name: Install pub Dependencies
         run: flutter downgrade
-          Flutter version v1.20.0
+          Flutter channel stable
           flutter pub get
       - name: Build Android App
         run: flutter build apk --split-per-abi
