@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,6 +22,8 @@ class AuthService {
           accessToken: googleSignInAuthentication.accessToken);
       AuthResult result = await _auth.signInWithCredential(credential);
       // FirebaseUser user = result.user;
+      // updateUserData()
+      print(result.user.email);
       FirebaseUser user = await _auth.currentUser();
 
       print(user.uid);

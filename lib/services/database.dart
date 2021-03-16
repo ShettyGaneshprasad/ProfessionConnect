@@ -37,6 +37,19 @@ class DatabaseService {
 
 // use to update user data
 
+  Future<void> updateGSignInUserData({
+    String email,
+    String name,
+  }) async {
+    CollectionReference collectionReference =
+        Firestore.instance.collection('usersData');
+
+    collectionReference.document(user.uid).setData({
+      'email': email,
+      'name': name,
+    });
+  }
+
   Future<void> updateUserData({
     String name,
     String age,

@@ -1,6 +1,9 @@
+import 'package:ProfessionConnect/models/user.dart';
 import 'package:ProfessionConnect/services/auth.dart';
+import 'package:ProfessionConnect/services/database.dart';
 import 'package:ProfessionConnect/shared/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 import 'package:ProfessionConnect/screens/home/home.dart';
@@ -26,6 +29,8 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    User userdata = Provider.of<User>(context);
+    DatabaseService db = DatabaseService(user: userdata);
     return loading
         ? Loading()
         : Scaffold(
@@ -244,34 +249,56 @@ class _SignInState extends State<SignIn> {
                                   /// RaisedButton login through facebook auth.
                                   /// -----------------------------------------
                                   child: RaisedButton(
-                                    child: Text("Google"),
-                                    textColor: Colors.white,
-                                    color: Colors.blue,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(40)),
-                                    ),
-                                    onPressed: () => _auth.gSignIn().whenComplete(() => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>Home())))
-                                    // onPressed: ()
-                                    //     //     googleSignIn().whenComplete(() {
-                                    //     //   // FirebaseUser user =
-                                    //     //   //     await FirebaseAuth.instance.currentUser();
+                                      child: Text("Google"),
+                                      textColor: Colors.white,
+                                      color: Colors.blue,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(40)),
+                                      ),
+                                      onPressed: () {
+                                        _auth.gSignIn().whenComplete(() async {
+                                          var user =
+                                              _auth.googleSignIn.currentUser;
+                                          print("sucessssssss");
+                                          print("user name" +
+                                              user.email +
+                                              user.id);
+                                          await db.updateGSignInUserData(
+                                              email: _auth.googleSignIn
+                                                      .currentUser.email ??
+                                                  "email",
+                                              name: _auth.googleSignIn
+                                                  .currentUser.email);
 
-                                    //     //   Navigator.of(context).pushReplacement(
-                                    //     //       MaterialPageRoute(
-                                    //     //           builder: (context) => HomePage()));
-                                    //     // }
+                                          User(user.id, user.email);
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Home()));
+                                        });
+                                      }
 
-                                    //     async {
-                                    //   signInWithGoogle()
-                                    //       .then((FirebaseUser user) {
-                                    //  Navigator.of(context).pushReplacement(
-                                    //      MaterialPageRoute(
-                                    //         builder: (context) =>
-                                    //             HomePage()));
-                                    //   }).catchError((e) => print(e));
-                                    // },
-                                  ),
+                                      // onPressed: ()
+                                      //     //     googleSignIn().whenComplete(() {
+                                      //     //   // FirebaseUser user =
+                                      //     //   //     await FirebaseAuth.instance.currentUser();
+
+                                      //     //   Navigator.of(context).pushReplacement(
+                                      //     //       MaterialPageRoute(
+                                      //     //           builder: (context) => HomePage()));
+                                      //     // }
+
+                                      //     async {
+                                      //   signInWithGoogle()
+                                      //       .then((FirebaseUser user) {
+                                      //  Navigator.of(context).pushReplacement(
+                                      //      MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             HomePage()));
+                                      //   }).catchError((e) => print(e));
+                                      // },
+                                      ),
                                 ),
                                 SizedBox(
                                   width: 10.0,

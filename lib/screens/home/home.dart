@@ -588,8 +588,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   /// ---------------------------
   getHeaderText() {
     final userdata = Provider.of<User>(context);
+
     return Text(
-      userdata.email,
+      userdata.email ?? "emailname",
       maxLines: 1,
       textAlign: TextAlign.center,
       style: TextStyle(
