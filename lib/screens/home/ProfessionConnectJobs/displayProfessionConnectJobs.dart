@@ -130,10 +130,6 @@ class PCTile extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
-                    // Image.network(
-                    //   imgUrl,
-                    //   height: 150,
-                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
@@ -144,7 +140,6 @@ class PCTile extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-
                     SizedBox(
                       height: 10,
                     ),
