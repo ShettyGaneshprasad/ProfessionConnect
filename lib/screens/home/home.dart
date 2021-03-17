@@ -1,4 +1,5 @@
 import 'package:ProfessionConnect/screens/home/ProfessionConnectJobs/displayProfessionConnectJobs.dart';
+import 'package:ProfessionConnect/screens/home/drawerScreen.dart/CV/myCV.dart';
 import 'package:toast/toast.dart';
 import 'package:ProfessionConnect/models/user.dart';
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/aboutDeveloper/aboutDeveloper.dart';
@@ -95,9 +96,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
         gradient: LinearGradient(
           colors: <Color>[
-            Colors.yellow,
-            Color(0xFFFF3E4D),
-            Color(0xff2FD159),
+            Colors.green,
+            // Color(0xFFFF3E4D),
+            // Color(0xff2FD159),
             Colors.white,
           ],
           begin: Alignment.bottomLeft,
@@ -551,6 +552,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
                   getMaterialResideMenuItem('Home', Icons.home, 1),
                   getMaterialResideMenuItem('Profile', Icons.account_circle, 2),
+                  getMaterialResideMenuItem(
+                      'My CV', Icons.bookmark_border_outlined, 4),
                   getMaterialResideMenuItem('Saved Job', Icons.favorite, 3),
                   getMaterialResideMenuItem(
                       'Account Settings', Icons.settings, 6),
@@ -639,6 +642,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
       if (widgetId == 7) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => AboutDeveloper()));
+      } else {
+        if (widgetId == 4) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MyCV()));
+        }
       }
     }
   }
