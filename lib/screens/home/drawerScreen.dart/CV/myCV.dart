@@ -4,6 +4,7 @@ import 'package:ProfessionConnect/models/user.dart';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:ProfessionConnect/screens/home/drawerScreen.dart/Profile/editprofilePage.dart';
 
@@ -73,11 +74,14 @@ class MyCV extends StatelessWidget {
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // SizedBox(width: 100),
-                  Text(
-                    "Upload CV",
-                    style: TextStyle(color: Colors.green, fontSize: 20),
-                    textAlign: TextAlign.left,
-                  ),
+                  FlatButton(
+                      child: Text(
+                        "Upload CV",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        textAlign: TextAlign.left,
+                      ),
+                      onPressed: () {},
+                      color: Color(0xff2FD159)),
                 ],
               ),
               // getEmailHeaderText(userdata),

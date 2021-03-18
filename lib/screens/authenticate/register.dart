@@ -142,6 +142,7 @@ class _RegisterState extends State<Register> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(40))),
                               child: TextFormField(
+                                obscureText: true,
                                 validator: (val) => val.length < 6
                                     ? 'Enter a password 6+ chars long'
                                     : null,
