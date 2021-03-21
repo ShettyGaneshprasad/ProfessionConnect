@@ -172,7 +172,7 @@ class JobTile extends StatelessWidget {
                       child: Text(
                         title,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.green,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
@@ -180,7 +180,7 @@ class JobTile extends StatelessWidget {
                     Text(
                       "(" + type + ")",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.bold),
                     ),
@@ -192,7 +192,7 @@ class JobTile extends StatelessWidget {
                         Text(
                           "Company  :- ",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.green,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),
@@ -202,7 +202,7 @@ class JobTile extends StatelessWidget {
                         Text(
                           companyName,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),
@@ -213,7 +213,7 @@ class JobTile extends StatelessWidget {
                         Text(
                           "Location  :- ",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.green,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),
@@ -223,7 +223,7 @@ class JobTile extends StatelessWidget {
                         Text(
                           location,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),

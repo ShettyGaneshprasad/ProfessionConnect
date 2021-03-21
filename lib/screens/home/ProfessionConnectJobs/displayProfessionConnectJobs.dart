@@ -135,7 +135,7 @@ class PCTile extends StatelessWidget {
                       child: Text(
                         position,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.green,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
@@ -148,7 +148,7 @@ class PCTile extends StatelessWidget {
                         Text(
                           "Company  :- ",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.green,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),
@@ -158,7 +158,7 @@ class PCTile extends StatelessWidget {
                         Text(
                           companyName,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),
@@ -169,7 +169,7 @@ class PCTile extends StatelessWidget {
                         Text(
                           "Location  :- ",
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.green,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),
@@ -179,7 +179,7 @@ class PCTile extends StatelessWidget {
                         Text(
                           location,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.grey,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
                         ),
